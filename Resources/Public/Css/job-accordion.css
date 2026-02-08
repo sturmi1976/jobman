@@ -1,0 +1,54 @@
+
+
+.job-accordion .job-item {
+    border: 1px solid #ddd;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* Header */
+.job-header {
+    width: 100%;
+    background: #f5f5f5;
+    padding: 12px;
+    cursor: pointer;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.job-header:hover {
+    background: #eaeaea;
+}
+
+/* Content */
+.job-body {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    padding: 0 12px;
+    transition:
+        max-height 0.35s ease,
+        opacity 0.25s ease,
+        padding 0.25s ease;
+}
+
+/* Offen */
+.job-item.active .job-body {
+    max-height: 1000px; /* ausreichend groß */
+    opacity: 1;
+    padding: 12px;
+}
+
+/* Icon drehen */
+.job-item.active .toggle-icon {
+    transform: rotate(45deg);
+}
+
+.toggle-icon {
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}

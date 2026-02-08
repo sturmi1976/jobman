@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2026-02-02T12:00:00Z">
+    <body>
+      <trans-unit id="tx_jobman_domain_model_job.title">
+        <source>Job Title</source>
+      </trans-unit>
+      <trans-unit id="tx_jobman_domain_model_job.description">
+        <source>Description</source>
+      </trans-unit>
+      <trans-unit id="tx_jobman_domain_model_job.location">
+        <source>Location</source>
+      </trans-unit>
+      <trans-unit id="tx_jobman_domain_model_job.employment_type">
+        <source>Employment Type</source>
+      </trans-unit>
+      <trans-unit id="tx_jobman_domain_model_job.salary">
+        <source>Salary</source>
+      </trans-unit>
+      <trans-unit id="tx_jobman_domain_model_job.remote">
+        <source>Remote possible</source>
+      </trans-unit>
+      <trans-unit id="tx_jobman_domain_model_job.remote_type">
+        <source>Remote Type</source>
+      </trans-unit>
+
+
+      <trans-unit id="tx_jobman_domain_model_job.remote_type.hybrid">
+    <source>Hybrid</source>
+</trans-unit>
+
+<trans-unit id="tx_jobman_domain_model_job.remote_type.full_remote">
+    <source>100% Remote</source>
+</trans-unit>
+
+<trans-unit id="tx_jobman_domain_model_job.remote_type.remote_eu">
+    <source>Remote within EU</source>
+</trans-unit>
+
+<trans-unit id="tx_jobman_domain_model_job.remote_type.remote_world">
+    <source>Remote worldwide</source>
+</trans-unit>
+
+
+
+      <trans-unit id="tx_jobman_domain_model_job.valid_through">
+        <source>Valid Through</source>
+      </trans-unit>
+      <trans-unit id="tx_jobman_domain_model_job.employment_type.fulltime">
+    <source>Full Time</source>
+    </trans-unit>
+    <trans-unit id="tx_jobman_domain_model_job.employment_type.parttime">
+        <source>Part Time</source>
+    </trans-unit>
+    <trans-unit id="tx_jobman_domain_model_job.employment_type.freelance">
+        <source>Freelance</source>
+    </trans-unit>
+
+    <trans-unit id="tx_jobman_domain_model_job.employment_type.freelance.description">
+        <source>Description</source>
+      </trans-unit>
+
+    </body>
+  </file>
+</xliff>

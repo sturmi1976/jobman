@@ -1,0 +1,5 @@
+jobman:
+  view:
+    templateRootPath: 'EXT:jobman/Resources/Private/Templates/'
+    partialRootPath: 'EXT:jobman/Resources/Private/Partials/'
+    layoutRootPath: 'EXT:jobman/Resources/Private/Layouts/'

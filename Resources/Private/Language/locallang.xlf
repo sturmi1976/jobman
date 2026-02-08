@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+
+  <file source-language="en" datatype="plaintext" original="messages" product-name="jobman">
+
+    <header/>
+
+    <body>
+
+      <trans-unit id="job.location">
+        <source>Location</source>
+      </trans-unit>
+
+      <trans-unit id="job.salary">
+        <source>Salary</source>
+      </trans-unit>
+
+      <trans-unit id="job.employmentType">
+        <source>Employment type</source>
+      </trans-unit>
+
+      <trans-unit id="job.remote">
+        <source>Remote possible</source>
+      </trans-unit>
+
+      <trans-unit id="job.description">
+        <source>Description</source>
+      </trans-unit>
+
+    </body>
+  </file>
+</xliff>

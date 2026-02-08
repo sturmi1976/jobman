@@ -1,0 +1,26 @@
+{
+  "name": "lanius/jobman",
+  "type": "typo3-cms-extension",
+  "description": "Job management extension for TYPO3",
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "Andre Lanius",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "typo3/cms-core": "^14.1",
+    "friendsoftypo3/tt-address": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Lanius\\Jobman\\": "Classes/"
+    }
+  },
+  "extra": {
+    "typo3/cms": {
+      "extension-key": "jobman"
+    }
+  }
+}

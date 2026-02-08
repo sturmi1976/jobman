@@ -1,0 +1,99 @@
+<T3DataStructure>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>
+                    Sheet Title
+                </sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.display>
+                        <label>Anzeige in der Listenansicht</label>
+                        <onChange>reload</onChange>
+                        <config>
+                                <type>select</type>
+                                 <renderType>selectSingle</renderType>
+                                <items>
+                                    <numIndex index="0">
+                                        <numIndex index="0">Accordion</numIndex>
+                                        <numIndex index="1">accordion</numIndex>
+                                    </numIndex>
+                                    <numIndex index="1">
+                                        <numIndex index="0">Kacheln</numIndex>
+                                        <numIndex index="1">tiles</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2">
+                                        <numIndex index="0">Liste</numIndex>
+                                        <numIndex index="1">list</numIndex>
+                                    </numIndex>
+                                </items>
+                                <default>accordion</default>
+                            </config>
+                    </settings.display>
+
+                    <settings.tileColumns>
+                        <label>Anzahl der Spalten für Kacheln</label>
+                        <displayCond>FIELD:settings.display:=:tiles</displayCond>
+                        <config>
+                            <type>input</type>
+                            <size>3</size>
+                            <eval>int</eval>
+                            <default>3</default>
+                        </config>
+                    </settings.tileColumns>
+
+                    <settings.accordionType>
+                        <label>Accordion-Typ</label>
+
+                        <!-- NUR anzeigen, wenn listView = accordion -->
+                        <displayCond>FIELD:settings.display:=:accordion</displayCond>
+
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <items>
+                                <numIndex index="0">
+                                    <numIndex index="0">Eigenes Accordion</numIndex>
+                                    <numIndex index="1">custom</numIndex>
+                                </numIndex>
+                                <numIndex index="1">
+                                    <numIndex index="0">Bootstrap Accordion</numIndex>
+                                    <numIndex index="1">bootstrap</numIndex>
+                                </numIndex>
+                            </items>
+                            <default>custom</default>
+                        </config>
+                    </settings.accordionType>
+
+
+                    <settings.sysFolder>
+                        <label>Job-SysFolder auswählen</label>
+                        <config>
+                            <type>group</type>
+                            <internal_type>db</internal_type>
+                            <allowed>pages</allowed>
+                            <size>1</size>
+                            <maxitems>1</maxitems>
+                            <minitems>0</minitems>
+                            <show_thumbs>1</show_thumbs>
+                            <appearance>
+                                <elementBrowserAllowed>pages</elementBrowserAllowed>
+                                <elementBrowserType>db</elementBrowserType>
+                                <elementBrowserTitle>Seite auswählen</elementBrowserTitle>
+                            </appearance>
+                            <fieldControl>
+                                <elementBrowser>
+                                    <disabled>false</disabled>
+                                </elementBrowser>
+                            </fieldControl>
+                            <foreign_table_where>AND pages.doktype = 254</foreign_table_where> 
+                            <!-- 254 = Typ SysFolder -->
+                        </config>
+                    </settings.sysFolder>
+
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>
+

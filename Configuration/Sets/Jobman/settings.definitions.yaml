@@ -1,0 +1,41 @@
+categories:
+  Jobman:
+    label: 'Jobmanager (Jobman)'           # Hauptkategorie
+  Jobman.templates:
+    label: 'Templates'                     # Unterkategorie Templates
+    parent: Jobman
+  Jobman.pages:
+    label: 'Pages'                         # Unterkategorie Pages
+    parent: Jobman
+  Jobman.uids:
+    label: 'Page Uids and folder'
+    parent: Jobman
+
+settings:
+  jobman.templateRootPath:
+    label: 'Templates'                     # Label für das Feld
+    category: Jobman.templates             # Kategorie zuordnen
+    description: 'Path to template root'   # Beschreibung
+    type: string                           # Datentyp
+    default: 'EXT:jobman/Resources/Private/Templates/'  # Standardwert
+
+  jobman.partialRootPath:
+    label: 'Partials'
+    category: Jobman.templates
+    description: 'Path to partial root'
+    type: string
+    default: 'EXT:jobman/Resources/Private/Partials/'
+
+  jobman.layoutRootPath:
+    label: 'Layouts'
+    category: Jobman.templates
+    description: 'Path to layout root'
+    type: string
+    default: 'EXT:jobman/Resources/Private/Layouts/'
+
+  jobman.pid:
+    label: 'Storage folder'
+    category: Jobman.uids
+    description: 'The uid of storage folder'
+    type: string
+    default: '0'

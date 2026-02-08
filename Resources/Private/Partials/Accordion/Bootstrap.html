@@ -1,0 +1,81 @@
+{namespace job=Lanius\Jobman\ViewHelpers}
+
+
+<f:debug>{_all}</f:debug>
+
+<div class="accordion" id="jobAccordion">
+    <f:for each="{jobs}" as="job" iteration="iterator">
+        <div class="accordion-item">
+
+            <h2 class="accordion-header" id="heading{iterator.index}">
+                <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapse{iterator.index}"
+                    aria-expanded="false"
+                    aria-controls="collapse{iterator.index}"
+                >
+                    {job.title}
+                </button>
+            </h2>
+
+            <div
+                id="collapse{iterator.index}"
+                class="accordion-collapse collapse"
+                aria-labelledby="heading{iterator.index}"
+                data-bs-parent="#jobAccordion"
+            >
+                <div class="accordion-body">
+
+                    <p>
+                        <strong>
+                            <f:translate 
+    key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.location"
+    languageKey="{job:languageKey()}" />:
+                        </strong>
+                        {job.location}
+                    </p>
+
+                    <p>
+                        <strong>
+                            <f:translate key="job.employmentType" extensionName="Jobman" languageKey="{job:languageKey()}" />:
+                        </strong>
+                        <f:if condition="{job.employmentType} == 'FULL_TIME'">
+                            <f:then>
+                                Vollzeit
+                            </f:then>
+                            <f:else if="{job.employmentType} == 'PART_TIME'">
+                                Teilzeit
+                            </f:else>
+                            <f:else if="{job.employmentType} == 'CONTRACTOR'">
+                                Freelancer
+                            </f:else>
+                        </f:if>
+                    </p>
+
+                    <f:format.raw>{job.description}</f:format.raw> 
+
+                    <f:if condition="{job.remote}">
+                        <p>
+                            <em>
+                                <f:translate key="job.remote" languageKey="{job:languageKey()}" />
+                            </em>
+                        </p>
+                    </f:if>
+
+                    <f:if condition="{job.salary}">
+                        <p>
+                            <strong>
+                                <f:translate key="job.salary" languageKey="{job:languageKey()}" />:
+                            </strong>
+                            {job.salary}
+                        </p>
+                    </f:if>
+
+                </div>
+            </div>
+
+        </div>
+    </f:for>
+</div>

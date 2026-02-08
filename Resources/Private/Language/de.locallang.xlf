@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+
+  <file source-language="de" datatype="plaintext" original="messages">
+
+    <body>
+
+      <trans-unit id="job.location">
+        <source>Ort</source>
+      </trans-unit>
+
+      <trans-unit id="job.salary">
+        <source>Gehalt</source>
+      </trans-unit>
+
+      <trans-unit id="job.employmentType">
+        <source>Anstellungsart</source>
+      </trans-unit>
+
+      <trans-unit id="job.remote">
+        <source>Remote möglich</source>
+      </trans-unit>
+
+      <trans-unit id="job.description">
+        <source>Vollständige Beschreibung</source>
+      </trans-unit>
+
+    </body>
+  </file>
+</xliff>

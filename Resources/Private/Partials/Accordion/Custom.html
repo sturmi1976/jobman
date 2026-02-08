@@ -1,0 +1,22 @@
+<div class="job-accordion">
+    <f:for each="{jobs}" as="job">
+        <div class="job-item">
+            <button type="button" class="job-header">
+                <span>{job.title}</span>
+                <span class="toggle-icon">+</span>
+            </button>
+
+            <div class="job-body">
+                <p><strong><f:translate key="job.location" />:</strong> {job.location}</p>
+                <p><strong>Anstellungsart:</strong> {job.employmentType}</p>
+                <f:format.raw>{job.description}</f:format.raw>
+                <f:if condition="{job.remote}">
+                        <p><em>Remote möglich</em></p>
+                    </f:if>
+                <f:if condition="{job.salary}">
+                        <p><strong><f:translate key="job.location" />:</strong> {job.salary}</p>
+                    </f:if>
+            </div>
+        </div>
+    </f:for>
+</div>

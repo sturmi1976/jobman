@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2">
+  <file source-language="en" target-language="de" datatype="plaintext" original="messages">
+    <body>
+
+      <trans-unit id="tx_jobman_domain_model_job.title">
+        <target>Jobtitel</target>
+      </trans-unit>
+
+      <trans-unit id="tx_jobman_domain_model_job.description">
+        <target>Volständige Beschreibung</target>
+      </trans-unit>
+
+      <trans-unit id="tx_jobman_domain_model_job.location">
+        <target>Ort</target>
+      </trans-unit>
+
+      <trans-unit id="tx_jobman_domain_model_job.salary">
+        <target>Gehalt</target>
+      </trans-unit>
+
+      <trans-unit id="tx_jobman_domain_model_job.remote">
+        <target>Remote möglich</target>
+      </trans-unit>
+
+      <trans-unit id="tx_jobman_domain_model_job.remote_type.hybrid">
+    <target>Hybrid</target>
+</trans-unit>
+
+<trans-unit id="tx_jobman_domain_model_job.remote_type.full_remote">
+    <target>100 % Homeoffice</target>
+</trans-unit>
+
+<trans-unit id="tx_jobman_domain_model_job.remote_type.remote_eu">
+    <target>Remote innerhalb der EU</target>
+</trans-unit>
+
+<trans-unit id="tx_jobman_domain_model_job.remote_type.remote_world">
+    <target>Remote weltweit</target>
+</trans-unit>
+
+
+
+      <trans-unit id="tx_jobman_domain_model_job.remote_type">
+        <target>Remote Typ</target>
+      </trans-unit>
+
+      <trans-unit id="tx_jobman_domain_model_job.employment_type">
+        <target>Anstellungsart</target>
+      </trans-unit>
+
+    </body>
+  </file>
+</xliff>

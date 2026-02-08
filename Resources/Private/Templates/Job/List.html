@@ -1,0 +1,21 @@
+<h1>Offene Stellen</h1>
+
+
+<f:if condition="{listView} == 'accordion'">
+
+    <!-- Eigenes Accordion -->
+    <f:if condition="{accordionType} == 'custom'">
+        <f:render partial="Accordion/Custom" arguments="{jobs: jobs}" />
+    </f:if>
+
+    <!-- Bootstrap Accordion -->
+    <f:if condition="{accordionType} == 'bootstrap'">
+        <f:render partial="Accordion/Bootstrap" arguments="{jobs: jobs}" />
+    </f:if>
+
+</f:if>
+
+
+
+
+

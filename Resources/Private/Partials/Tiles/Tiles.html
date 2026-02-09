@@ -21,9 +21,68 @@
                 </f:if>
 
                 <f:if condition="{job.employmentType}">
-                    <span class="jobman-tile__type">
-                        {job.employmentType}
+ 
+                    <f:if condition="{job.employmentType} == 'CONTRACTOR'">
+                    <span class="jobman-tile__type">💼
+                        <f:translate
+                key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.contractor"
+                languageKey="{job:languageKey()}" />
                     </span>
+                </f:if>
+
+
+
+                <f:if condition="{job.employmentType} == 'FULL_TIME'">
+                    <span class="jobman-tile__type">💼
+                        <f:translate
+                key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.fulltime"
+                languageKey="{job:languageKey()}" />
+                    </span>
+                </f:if>
+
+
+                <f:if condition="{job.employmentType} == 'PART_TIME'">
+                    <span class="jobman-tile__type">💼
+                        <f:translate
+                key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.parttime"
+                languageKey="{job:languageKey()}" />
+                    </span>
+                </f:if>
+
+
+                <f:if condition="{job.employmentType} == 'TEMPORARY'">
+                    <span class="jobman-tile__type">💼
+                        <f:translate
+                key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.temporary"
+                languageKey="{job:languageKey()}" />
+                    </span>
+                </f:if>
+
+
+                <f:if condition="{job.employmentType} == 'INTERN'">
+                    <span class="jobman-tile__type">💼
+                        <f:translate
+                key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.intern"
+                languageKey="{job:languageKey()}" />
+                    </span>
+                </f:if>
+
+                <f:if condition="{job.employmentType} == 'VOLUNTEER'">
+                    <span class="jobman-tile__type">💼
+                        <f:translate
+                key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.volunteer"
+                languageKey="{job:languageKey()}" />
+                    </span>
+                </f:if>
+
+                <f:if condition="{job.employmentType} == 'PER_DIEM'">
+                    <span class="jobman-tile__type">💼
+                        <f:translate
+                key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.per_diem"
+                languageKey="{job:languageKey()}" />
+                    </span>
+                </f:if>
+
                 </f:if>
             </div>
 

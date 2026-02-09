@@ -60,6 +60,25 @@
         <source>Description</source>
       </trans-unit>
 
+    <trans-unit id="tx_jobman_domain_model_job.employment_type.temporary">
+        <target>Temporary</target>
+      </trans-unit>
+    <trans-unit id="tx_jobman_domain_model_job.employment_type.intern">
+        <target>Praktikum</target>
+      </trans-unit>
+    <trans-unit id="tx_jobman_domain_model_job.employment_type.volunteer">
+        <target>Freiwillige / Ehrenamt</target>
+      </trans-unit>
+    <trans-unit id="tx_jobman_domain_model_job.employment_type.per_diem">
+        <target>Tagesweise / Aushilfe</target>
+      </trans-unit>
+    <trans-unit id="tx_jobman_domain_model_job.employment_type.fulltime">
+        <target>Vollzeit</target>
+      </trans-unit>
+    <trans-unit id="tx_jobman_domain_model_job.employment_type.parttime">
+        <target>Teilzeit</target>
+      </trans-unit>
+
     </body>
   </file>
 </xliff>

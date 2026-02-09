@@ -14,7 +14,111 @@ class Job extends AbstractEntity
     protected string $employmentType = '';
     protected string $salary = '';
     protected bool $remote = false;
-    protected ?\DateTime $validThrough = null;
+    //protected ?\DateTime $validThrough = null;
+    protected int $crdate = 0;
+    protected int $tstamp = 0;
+    protected int $validThrough = 0;
+
+    protected ?string $sdStreet = null;
+    protected ?string $sdPostalcode = null;
+    protected ?string $sdCity = null;
+    protected string $sdCountry = 'DE';
+    protected ?string $sdRegion = null;
+
+    public function getSdRegion(): ?string
+    {
+        return $this->sdRegion;
+    }
+
+    public function setSdRegion(?string $sdRegion): void
+    {
+        $this->sdRegion = $sdRegion;
+    }
+
+
+    public function getSdStreet(): ?string
+    {
+        return $this->sdStreet;
+    }
+
+    public function setSdStreet(?string $sdStreet): void
+    {
+        $this->sdStreet = $sdStreet;
+    }
+
+    public function getSdPostalcode(): ?string
+    {
+        return $this->sdPostalcode;
+    }
+
+    public function setSdPostalcode(?string $sdPostalcode): void
+    {
+        $this->sdPostalcode = $sdPostalcode;
+    }
+
+    public function getSdCity(): ?string
+    {
+        return $this->sdCity;
+    }
+
+    public function setSdCity(?string $sdCity): void
+    {
+        $this->sdCity = $sdCity;
+    }
+
+    public function getSdCountry(): string
+    {
+        return $this->sdCountry;
+    }
+
+    public function setSdCountry(string $sdCountry): void
+    {
+        $this->sdCountry = $sdCountry;
+    }
+
+
+    public function getValidThrough(): ?int
+    {
+        return $this->validThrough ?: null;
+    }
+
+    public function setValidThrough(int $validThrough): void
+    {
+        $this->validThrough = $validThrough;
+    }
+
+
+    /**
+     * @return int
+     */
+    public function getTstamp(): int
+    {
+        return $this->tstamp;
+    }
+
+    /**
+     * @param int $tstamp
+     */
+    public function setTstamp(int $tstamp): void
+    {
+        $this->tstamp = $tstamp;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCrdate(): int
+    {
+        return $this->crdate;
+    }
+
+    /**
+     * @param int $crdate
+     */
+    public function setCrdate(int $crdate): void
+    {
+        $this->crdate = $crdate;
+    }
 
     public function getTitle(): string
     {

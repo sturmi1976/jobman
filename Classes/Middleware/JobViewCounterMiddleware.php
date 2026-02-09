@@ -13,7 +13,9 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 final class JobViewCounterMiddleware implements MiddlewareInterface
 {
-    // Zeitraum in Sekunden, z.B. 24h = 86400
+    /**
+     * Zeitraum in Sekunden, z.B. 24h = 86400
+     */
     private const TIME_WINDOW = 86400;
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
@@ -31,43 +33,51 @@ final class JobViewCounterMiddleware implements MiddlewareInterface
 
     private function incrementViewCounter(int $jobUid, string $ip): void
     {
-        $connection = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getConnectionForTable('tx_jobman_job_views');
+        $connectionPool = GeneralUtility::makeInstance(ConnectionPool::class);
+        $viewsConnection = $connectionPool->getConnectionForTable('tx_jobman_job_views');
+        $jobsConnection = $connectionPool->getConnectionForTable('tx_jobman_domain_model_job');
 
         $now = time();
+        $currentDay = (int)floor($now / self::TIME_WINDOW); // Tagesfenster für UNIQUE-Key
 
-        // Prüfen, ob in TIME_WINDOW schon ein View für diese IP existiert
-        $existing = $connection->fetchOne(
-            'SELECT uid FROM tx_jobman_job_views WHERE job = ? AND ip = ? AND tstamp > ?',
-            [$jobUid, $ip, $now - self::TIME_WINDOW]
-        );
-
-        if ($existing === false) {
-            // Eintragen
-            $connection->insert(
-                'tx_jobman_job_views',
-                [
-                    'job' => $jobUid,
-                    'ip' => $ip,
-                    'tstamp' => $now
-                ]
+        // Transaktion starten (atomic)
+        $viewsConnection->beginTransaction();
+        try {
+            // Prüfen, ob schon ein View für diese IP im aktuellen Tagesfenster existiert
+            $existing = $viewsConnection->fetchOne(
+                'SELECT uid FROM tx_jobman_job_views WHERE job = ? AND ip = ? AND day = ? FOR UPDATE',
+                [$jobUid, $ip, $currentDay]
             );
 
-            // Gesamtviews in Haupttabelle erhöhen
-            $connection = GeneralUtility::makeInstance(ConnectionPool::class)
-                ->getConnectionForTable('tx_jobman_domain_model_job');
+            if ($existing === false) {
+                // Neuer Eintrag in Job-Views
+                $viewsConnection->insert(
+                    'tx_jobman_job_views',
+                    [
+                        'job' => $jobUid,
+                        'ip' => $ip,
+                        'tstamp' => $now,
+                        'day' => $currentDay
+                    ]
+                );
 
-            $connection->executeStatement(
-                'UPDATE tx_jobman_domain_model_job SET views = views + 1 WHERE uid = ? AND deleted = 0',
-                [$jobUid]
-            );
+                // Gesamtviews hochzählen
+                $jobsConnection->executeStatement(
+                    'UPDATE tx_jobman_domain_model_job SET views = views + 1 WHERE uid = ? AND deleted = 0',
+                    [$jobUid]
+                );
+            }
+
+            $viewsConnection->commit();
+        } catch (\Throwable $e) {
+            $viewsConnection->rollBack();
+            // Optional: Logger, damit man sieht, wenn etwas schiefgeht
         }
     }
 
     private function getClientIp(ServerRequestInterface $request): string
     {
         $serverParams = $request->getServerParams();
-        $ip = $serverParams['REMOTE_ADDR'] ?? '0.0.0.0';
-        return $ip;
+        return $serverParams['REMOTE_ADDR'] ?? '0.0.0.0';
     }
 }

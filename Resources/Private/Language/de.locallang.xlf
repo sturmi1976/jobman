@@ -24,6 +24,33 @@
       <trans-unit id="job.description">
         <source>Vollständige Beschreibung</source>
       </trans-unit>
+      <trans-unit id="job.showJob">
+        <source>Stelle anzeigen</source>
+      </trans-unit>
+      <trans-unit id="job.backToList">
+        <source>Zurück zur Übersicht</source>
+      </trans-unit>
+      <trans-unit id="job.contractor">
+        <source>Freelancer</source>
+      </trans-unit>
+      <trans-unit id="job.fulltime">
+        <source>Vollzeit</source>
+      </trans-unit>
+      <trans-unit id="job.parttime">
+        <source>Teilzeit</source>
+      </trans-unit>
+      <trans-unit id="job.temporary">
+        <source>Zeitlich befristet / Aushilfe</source>
+      </trans-unit>
+      <trans-unit id="job.intern">
+        <source>Praktikum</source>
+      </trans-unit>
+      <trans-unit id="job.volunteer">
+        <source>Ehrenamtlich</source>
+      </trans-unit>
+      <trans-unit id="job.per_diem">
+        <source>Aushilfe</source>
+      </trans-unit>
 
     </body>
   </file>

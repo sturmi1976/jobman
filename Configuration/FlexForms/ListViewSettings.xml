@@ -32,12 +32,16 @@
                     </settings.display>
 
                     <settings.tileColumns>
-                        <label>Anzahl der Spalten für Kacheln</label>
+                        <label>Anzahl der Spalten für Kacheln (max. 4 - nebeneinander)</label>
                         <displayCond>FIELD:settings.display:=:tiles</displayCond>
                         <config>
                             <type>input</type>
                             <size>3</size>
-                            <eval>int</eval>
+                            <eval>int,range</eval>
+                            <range>
+                                <lower>1</lower>
+                                <upper>4</upper>
+                            </range>
                             <default>3</default>
                         </config>
                     </settings.tileColumns>
@@ -45,7 +49,6 @@
                     <settings.accordionType>
                         <label>Accordion-Typ</label>
 
-                        <!-- NUR anzeigen, wenn listView = accordion -->
                         <displayCond>FIELD:settings.display:=:accordion</displayCond>
 
                         <config>

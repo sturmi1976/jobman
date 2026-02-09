@@ -1,0 +1,73 @@
+.jobman-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Einzelner Job */
+.jobman-job {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 1.5rem;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.jobman-job:hover {
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+}
+
+/* Header */
+.jobman-job__header {
+    margin-bottom: 1rem;
+}
+
+.jobman-job__title {
+    margin: 0 0 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+/* Meta */
+.jobman-job__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.jobman-job__meta span {
+    background: #f3f4f6;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+}
+
+/* Body */
+.jobman-job__salary {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.jobman-job__description {
+    color: #374151;
+    line-height: 1.5;
+}
+
+/* Footer */
+.jobman-job__footer {
+    margin-top: 1.25rem;
+}
+
+.jobman-job__link {
+    display: inline-block;
+    font-weight: 600;
+    color: #2563eb;
+    text-decoration: none;
+}
+
+.jobman-job__link:hover {
+    text-decoration: underline;
+}

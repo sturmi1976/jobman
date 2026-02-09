@@ -1,0 +1,56 @@
+{namespace job=Lanius\Jobman\ViewHelpers}
+
+
+<div class="jobman-list">
+
+    <f:for each="{jobs}" as="job">
+        <article class="jobman-job">
+
+            <header class="jobman-job__header">
+                <h3 class="jobman-job__title">
+                    {job.title}
+                </h3>
+
+                <div class="jobman-job__meta">
+                    <span class="jobman-job__location">
+                        📍 {job.location}
+                    </span>
+
+                    <f:if condition="{job.remote}">
+                        <span class="jobman-job__remote">
+                            🌍 Remote
+                        </span>
+                    </f:if>
+
+                    <span class="jobman-job__type">
+                        {job.employmentType}
+                    </span>
+                </div>
+            </header>
+
+            <div class="jobman-job__body">
+                <f:if condition="{job.salary}">
+                    <p class="jobman-job__salary">
+                        💰 {job.salary}
+                    </p>
+                </f:if>
+
+                <div class="jobman-job__description">
+                    <f:format.crop maxCharacters="160" respectWordBoundaries="true">
+                        <f:format.stripTags>
+                            {job.description}
+                        </f:format.stripTags>
+                    </f:format.crop>
+                </div>
+            </div>
+
+            <footer class="jobman-job__footer">
+                <f:link.action action="show" arguments="{job: job}" class="jobman-job__link">
+                    Stelle ansehen →
+                </f:link.action>
+            </footer>
+
+        </article>
+    </f:for>
+
+</div>

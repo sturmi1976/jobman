@@ -1,9 +1,131 @@
-<h1>{job.title}</h1>
+{namespace job=Lanius\Jobman\ViewHelpers}
 
-<p><strong>Ort:</strong> {job.location}</p>
+<div class="jobman-job-detail">
 
-<div class="job-description">
-    <f:format.html>{job.description}</f:format.html>
+    <!-- Back link -->
+    <div class="jobman-job-detail__back">
+        <f:link.action action="list" class="jobman-job-detail__backlink">
+            <f:translate
+                key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.backToList"
+                languageKey="{job:languageKey()}" />
+        </f:link.action>
+    </div>
+
+    <!-- Header -->
+    <header class="jobman-job-detail__header">
+        <h1 class="jobman-job-detail__title">{job.title}</h1>
+
+        <ul class="jobman-job-detail__meta">
+            <f:if condition="{job.location}">
+                <li>
+                    📍 <span>{job.location}</span>
+                </li>
+            </f:if>
+
+            <f:if condition="{job.employmentType}">
+                <f:if condition="{job.employmentType} == 'CONTRACTOR'">
+                    <li>💼
+                        <f:translate
+                key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.contractor"
+                languageKey="{job:languageKey()}" />
+                    </li>
+                </f:if>
+                <f:if condition="{job.employmentType} == 'FULL_TIME'">
+                    <li>💼
+                        <f:translate
+                key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.fulltime"
+                languageKey="{job:languageKey()}" />
+                    </li>
+                </f:if>
+                <f:if condition="{job.employmentType} == 'PART_TIME'">
+                    <li>💼
+                        <f:translate
+                key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.parttime"
+                languageKey="{job:languageKey()}" />
+                    </li>
+                </f:if>
+                <f:if condition="{job.employmentType} == 'TEMPORARY'">
+                    <li>💼
+                        <f:translate
+                key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.temporary"
+                languageKey="{job:languageKey()}" />
+                    </li>
+                </f:if>
+            </f:if>
+            <f:if condition="{job.employmentType} == 'INTERN'">
+                    <li>💼
+                        <f:translate
+                key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.intern"
+                languageKey="{job:languageKey()}" />
+                    </li>
+                </f:if>
+                <f:if condition="{job.employmentType} == 'VOLUNTEER'">
+                    <li>💼
+                        <f:translate
+                key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.volunteer"
+                languageKey="{job:languageKey()}" />
+                    </li>
+                </f:if>
+                <f:if condition="{job.employmentType} == 'PER_DIEM'">
+                    <li>💼
+                        <f:translate
+                key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.per_diem"
+                languageKey="{job:languageKey()}" />
+                    </li>
+                </f:if>
+            </f:if>
+
+            <f:if condition="{job.remote}">
+                <li>
+                    🌍
+                    <f:if condition="{job.remoteType}">
+                        <span>{job.remoteType}</span>
+                    </f:if>
+                    <f:else>
+                        <span>Remote</span>
+                    </f:else>
+                </li>
+            </f:if>
+
+            <f:if condition="{job.salary}">
+                <li>
+                    💰 <span>{job.salary}</span>
+                </li>
+            </f:if>
+        </ul>
+    </header>
+
+    <!-- Description -->
+    <section class="jobman-job-detail__content">
+        <f:if condition="{job.description}">
+            <div class="jobman-job-detail__description">
+                <f:format.html>{job.description}</f:format.html>
+            </div>
+        </f:if>
+    </section>
+
+    <!-- Footer -->
+    <footer class="jobman-job-detail__footer">
+        <f:if condition="{job.crdate}">
+            <div class="jobman-job-detail__date">
+                🕒
+                <f:translate
+                    key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.postedOn"
+                    languageKey="{job:languageKey()}" />
+                <time datetime="{f:format.date(date: job.crdate, format: 'Y-m-d')}">
+                    <f:format.date format="d.m.Y">{job.crdate}</f:format.date>
+                </time>
+            </div>
+        </f:if>
+
+        <f:if condition="{job.views}">
+            <div class="jobman-job-detail__views">
+                👁 {job.views}
+                <f:translate
+                    key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.views"
+                    languageKey="{job:languageKey()}" />
+            </div>
+        </f:if>
+    </footer>
+
 </div>
-
-

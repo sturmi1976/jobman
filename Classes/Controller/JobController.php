@@ -14,12 +14,16 @@ use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Context\LanguageAspect;
 use TYPO3\CMS\Core\Site\SiteFinder;
 use \TYPO3\CMS\Core\Site\Entity\SiteLanguage;
+use TYPO3\CMS\Core\Page\PageRenderer;
+
+use Lanius\Jobman\PageTitle\TitleTag;
 
 class JobController extends ActionController
 {
 
     public function __construct(
-        private readonly JobRepository $jobRepository
+        protected JobRepository $jobRepository,
+        protected TitleTag $titleProvider
     ) {}
 
 
@@ -31,8 +35,6 @@ class JobController extends ActionController
         /** @var Locale $locale */
         $locale = $language->getLocale();
         $languageKey = $locale->getLanguageCode();
-
-        //\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($languageKey);
 
         $jobs = $this->jobRepository->findAllActive((int)$this->settings['sysFolder']);
 
@@ -55,18 +57,85 @@ class JobController extends ActionController
             }
         }
 
+        if ($listView === 'list') {
+            $assetCollector->addStyleSheet(
+                'jobman-list',
+                'EXT:jobman/Resources/Public/Css/job-list.css'
+            );
+        }
+
+        if ($listView === 'tiles') {
+            $assetCollector->addStyleSheet(
+                'jobman-list',
+                'EXT:jobman/Resources/Public/Css/job-tiles.css'
+            );
+        }
+
         $this->view->assignMultiple([
             'jobs' => $jobs,
             'listView' => $listView,
             'accordionType' => $accordionType,
+            'languageKey' => $languageKey,
         ]);
 
 
         return $this->htmlResponse();
     }
 
+
+
     public function showAction(\Lanius\Jobman\Domain\Model\Job $job): ResponseInterface
     {
+        $assetCollector = GeneralUtility::makeInstance(AssetCollector::class);
+
+        $assetCollector->addStyleSheet(
+            'jobman-detail',
+            'EXT:jobman/Resources/Public/Css/job-detail.css'
+        );
+
+        // Title Tag for detail pages
+        $this->titleProvider->setTitle(htmlspecialchars($job->getTitle()));
+
+
+        // --- JSON-LD for Google Jobs ---
+        $structuredData = [
+            "@context" => "https://schema.org/",
+            "@type" => "JobPosting",
+            "title" => $job->getTitle(),
+            "description" => strip_tags($job->getDescription()),
+            "datePosted" => date('c', $job->getTstamp()),
+            "validThrough" => $job->getValidThrough() ? date('c', $job->getValidThrough()) : null,
+            "employmentType" => $job->getEmploymentType(),
+            "hiringOrganization" => [
+                "@type" => "Organization",
+                "name" => "Meine Firma",
+            ],
+            "jobLocation" => [
+                "@type" => "Place",
+                "address" => [
+                    "@type" => "PostalAddress",
+                    "streetAddress" => $job->getSdStreet(),
+                    "postalCode" => $job->getSdPostalcode(),
+                    "addressLocality" => $job->getSdCity(),
+                    "addressRegion" => $job->getSdRegion(),
+                    "addressCountry" => $job->getSdCountry(),
+                ],
+            ],
+            "baseSalary" => [
+                "@type" => "MonetaryAmount",
+                "currency" => "EUR",
+                "value" => [
+                    "@type" => "QuantitativeValue",
+                    "value" => floatval(str_replace(['€', ','], ['', '.'], $job->getSalary())), // konvertiert z.B. "3.000€" => 3000
+                    "unitText" => "MONTH"
+                ]
+            ],
+        ];
+
+        // PageRenderer
+        $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
+        $pageRenderer->addHeaderData('<script type="application/ld+json">' . json_encode($structuredData, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) . '</script>');
+
         $this->view->assign('job', $job);
 
 

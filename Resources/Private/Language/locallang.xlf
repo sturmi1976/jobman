@@ -26,6 +26,33 @@
       <trans-unit id="job.description">
         <source>Description</source>
       </trans-unit>
+      <trans-unit id="job.showJob">
+        <source>Show</source>
+      </trans-unit>
+      <trans-unit id="job.backToList">
+        <source>Back</source>
+      </trans-unit>
+      <trans-unit id="job.contractor">
+        <source>Freelancing</source>
+      </trans-unit>
+      <trans-unit id="job.fulltime">
+        <source>Full time</source>
+      </trans-unit>
+      <trans-unit id="job.parttime">
+        <source>Part time</source>
+      </trans-unit>
+      <trans-unit id="job.temporary">
+        <source>Temporary</source>
+      </trans-unit>
+      <trans-unit id="job.intern">
+        <source>Internship</source>
+      </trans-unit>
+      <trans-unit id="job.volunteer">
+        <source>Voluntarily</source>
+      </trans-unit>
+      <trans-unit id="job.per_diem">
+        <source>Temporary help</source>
+      </trans-unit>
 
     </body>
   </file>

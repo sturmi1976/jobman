@@ -1,0 +1,47 @@
+{namespace job=Lanius\Jobman\ViewHelpers}
+
+<div class="jobman-tiles jobman-tiles--cols-{tileColumns}">
+    <f:for each="{jobs}" as="job">
+        <article class="jobman-tile">
+            <h3 class="jobman-tile__title">
+                <f:link.action
+                    action="show"
+                    arguments="{job: job}"
+                    class="jobman-tile__link"
+                >
+                    {job.title}
+                </f:link.action>
+            </h3>
+
+            <div class="jobman-tile__meta">
+                <f:if condition="{job.location}">
+                    <span class="jobman-tile__location">
+                        📍 {job.location}
+                    </span>
+                </f:if>
+
+                <f:if condition="{job.employmentType}">
+                    <span class="jobman-tile__type">
+                        {job.employmentType}
+                    </span>
+                </f:if>
+            </div>
+
+            <f:if condition="{job.salary}">
+                <div class="jobman-tile__salary">
+                    💰 {job.salary}
+                </div>
+            </f:if>
+
+            <div class="jobman-tile__footer">
+                <span class="jobman-tile__cta">
+                    <f:link.action action="show" arguments="{job: job}" class="jobman-job__link">
+                        <f:translate 
+    key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.showJob"
+    languageKey="{job:languageKey()}" /> →
+                    </f:link.action>
+                </span>
+            </div>
+        </article>
+    </f:for>
+</div>

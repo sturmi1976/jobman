@@ -58,6 +58,10 @@ return [
                     ['LLL:EXT:jobman/Resources/Private/Language/locallang_db.xlf:tx_jobman_domain_model_job.employment_type.fulltime', 'FULL_TIME'],
                     ['LLL:EXT:jobman/Resources/Private/Language/locallang_db.xlf:tx_jobman_domain_model_job.employment_type.parttime', 'PART_TIME'],
                     ['LLL:EXT:jobman/Resources/Private/Language/locallang_db.xlf:tx_jobman_domain_model_job.employment_type.freelance', 'CONTRACTOR'],
+                    ['LLL:EXT:jobman/Resources/Private/Language/locallang_db.xlf:tx_jobman_domain_model_job.employment_type.temporary', 'TEMPORARY'],
+                    ['LLL:EXT:jobman/Resources/Private/Language/locallang_db.xlf:tx_jobman_domain_model_job.employment_type.intern', 'INTERN'],
+                    ['LLL:EXT:jobman/Resources/Private/Language/locallang_db.xlf:tx_jobman_domain_model_job.employment_type.volunteer', 'VOLUNTEER'],
+                    ['LLL:EXT:jobman/Resources/Private/Language/locallang_db.xlf:tx_jobman_domain_model_job.employment_type.per_diem', 'PER_DIEM'],
                 ],
             ],
         ],
@@ -136,6 +140,52 @@ return [
         ],
 
 
+        'valid_through' => [
+            'label' => 'Bewerbungsfrist (Wichtig für Google for Jobs)',
+            'config' => [
+                'type' => 'input',
+                'renderType' => 'inputDateTime',
+                'eval' => 'datetime',
+                'default' => 0
+            ],
+        ],
+
+
+        // Structured Data Felder
+        'sd_street' => [
+            'label' => 'Straße',
+            'config' => ['type' => 'input', 'size' => 50],
+        ],
+        'sd_postalcode' => [
+            'label' => 'Postleitzahl',
+            'config' => ['type' => 'input', 'size' => 20],
+        ],
+        'sd_city' => [
+            'label' => 'Stadt',
+            'config' => ['type' => 'input', 'size' => 30],
+        ],
+        'sd_region' => [
+            'label' => 'Bundesland / Region',
+            'config' => [
+                'type' => 'input',
+                'size' => 20,
+            ],
+        ],
+        'sd_country' => [
+            'label' => 'Land',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    ['Deutschland', 'DE'],
+                    ['Österreich', 'AT'],
+                    ['Schweiz', 'CH'],
+                ],
+                'default' => 'DE',
+            ],
+        ],
+
+
 
 
 
@@ -173,6 +223,8 @@ title, slug, location, employment_type, remote, remote_type, settings,
 description, salary,
 --div--;Kontakt,
 address_mode, address_tt, address_manual,
+--div--;Structured Data,
+sd_street, sd_postalcode, sd_city, sd_region, sd_country, valid_through,
 --div--;core.form.tabs:language,--palette--;;paletteLanguage,
 --div--;core.form.tabs:access,hidden,--palette--;;paletteTimes,
 ',

@@ -3,3 +3,10 @@ services:
     resource: '../Classes/*'
     autowire: true
     autoconfigure: true
+
+  Lanius\Jobman\PageTitle\TitleTag:
+    public: true       
+    autowire: true
+    autoconfigure: true
+    tags:
+      - { name: 'core.pageTitleProvider', identifier: 'jobman' }

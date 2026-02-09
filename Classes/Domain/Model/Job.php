@@ -8,6 +8,7 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 class Job extends AbstractEntity
 {
     protected string $title = '';
+    protected string $sdCompany = '';
     protected string $description = '';
 
     protected string $location = '';
@@ -25,6 +26,27 @@ class Job extends AbstractEntity
     protected string $sdCountry = 'DE';
     protected ?string $sdRegion = null;
 
+    protected string $addressMode = '';
+    protected int $addressTt = 0;
+    protected string $addressManual = '';
+
+
+    public function getAddressMode(): string
+    {
+        return $this->addressMode;
+    }
+
+    public function getAddressTt(): int
+    {
+        return $this->addressTt;
+    }
+
+    public function getAddressManual(): string
+    {
+        return $this->addressManual;
+    }
+
+
     public function getSdRegion(): ?string
     {
         return $this->sdRegion;
@@ -33,6 +55,18 @@ class Job extends AbstractEntity
     public function setSdRegion(?string $sdRegion): void
     {
         $this->sdRegion = $sdRegion;
+    }
+
+
+
+    public function getSdCompany(): ?string
+    {
+        return $this->sdCompany;
+    }
+
+    public function setSdCompany(?string $sdCompany): void
+    {
+        $this->sdCompany = $sdCompany;
     }
 
 

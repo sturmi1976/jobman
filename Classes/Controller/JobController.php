@@ -16,6 +16,8 @@ use TYPO3\CMS\Core\Site\SiteFinder;
 use \TYPO3\CMS\Core\Site\Entity\SiteLanguage;
 use TYPO3\CMS\Core\Page\PageRenderer;
 
+use TYPO3\CMS\Core\Database\ConnectionPool;
+
 use Lanius\Jobman\PageTitle\TitleTag;
 
 class JobController extends ActionController
@@ -108,7 +110,7 @@ class JobController extends ActionController
             "employmentType" => $job->getEmploymentType(),
             "hiringOrganization" => [
                 "@type" => "Organization",
-                "name" => "Meine Firma",
+                "name" => $job->getSdCompany(),
             ],
             "jobLocation" => [
                 "@type" => "Place",
@@ -132,11 +134,54 @@ class JobController extends ActionController
             ],
         ];
 
+
+
+
+        $contactAddress = null;
+
+        if ($job->getAddressMode() === 'tt_address' && $job->getAddressTt() > 0) {
+            $connection = GeneralUtility::makeInstance(ConnectionPool::class)
+                ->getConnectionForTable('tt_address');
+
+            $row = $connection->fetchAssociative(
+                'SELECT * 
+             FROM tt_address 
+             WHERE uid = ? AND deleted = 0 AND hidden = 0',
+                [$job->getAddressTt()]
+            );
+
+            if ($row) {
+                $contactAddress = [
+                    'type' => 'tt_address',
+                    'company' => $row['company'] ?? '',
+                    'name' => $row['name'] ?? '',
+                    'address' => $row['address'] ?? '',
+                    'zip' => $row['zip'] ?? '',
+                    'city' => $row['city'] ?? '',
+                    'region' => $row['region'] ?? '',
+                    'country' => $row['country'] ?? '',
+                    'email' => $row['email'] ?? '',
+                    'www' => $row['www'] ?? '',
+                ];
+            }
+        }
+
+        if ($job->getAddressMode() === 'manual' && trim($job->getAddressManual()) !== '') {
+            $contactAddress = [
+                'type' => 'manual',
+                'html' => $job->getAddressManual(),
+            ];
+        }
+
         // PageRenderer
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
         $pageRenderer->addHeaderData('<script type="application/ld+json">' . json_encode($structuredData, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) . '</script>');
 
-        $this->view->assign('job', $job);
+        $this->view->assignMultiple([
+            'job' => $job,
+            'contactAddress' => $contactAddress,
+        ]);
+
 
 
         return $this->htmlResponse();

@@ -102,6 +102,39 @@
                 <f:format.html>{job.description}</f:format.html>
             </div>
         </f:if>
+        
+        <f:if condition="{contactAddress}">
+            <h3>
+                <f:translate
+                key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.contact"
+                languageKey="{job:languageKey()}" />
+            </h3>
+            <f:if condition="{contactAddress.type} == 'tt_address'">
+                <f:then>
+                    <f:if condition="{contactAddress.company}">
+                        <strong>{contactAddress.company}</strong><br />
+                    </f:if>
+                    <f:if condition="{contactAddress.name}">
+                        <em>{contactAddress.name}</em><br />
+                    </f:if>
+                    <f:if condition="{contactAddress.street}">
+                        {contactAddress.street}<br />
+                    </f:if>
+                    <f:if condition="{contactAddress.zip}">
+                        {contactAddress.zip} 
+                    </f:if>
+                    <f:if condition="{contactAddress.city}">
+                        {contactAddress.city}<br />
+                    </f:if>
+                    <f:if condition="{contactAddress.email}">
+                        <f:link.email email="{contactAddress.email}">{contactAddress.email}</f:link.email>
+                    </f:if>
+                </f:then>
+                <f:else>
+                    <f:format.raw>{contactAddress.html}</f:format.raw>
+                </f:else>
+            </f:if>
+        </f:if>
     </section>
 
     <!-- Footer -->
@@ -112,8 +145,8 @@
                 <f:translate
                     key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.postedOn"
                     languageKey="{job:languageKey()}" />
-                <time datetime="{f:format.date(date: job.crdate, format: 'Y-m-d')}">
-                    <f:format.date format="d.m.Y">{job.crdate}</f:format.date>
+                <time datetime="{f:format.date(date: job.tstamp, format: 'Y-m-d')}">
+                    <f:format.date format="d.m.Y">{job.tstamp}</f:format.date>
                 </time>
             </div>
         </f:if>

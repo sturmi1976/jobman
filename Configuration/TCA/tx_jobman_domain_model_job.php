@@ -141,7 +141,7 @@ return [
 
 
         'valid_through' => [
-            'label' => 'Bewerbungsfrist (Wichtig für Google for Jobs)',
+            'label' => 'Bewerbungsfrist (für Google for Jobs) - Optional',
             'config' => [
                 'type' => 'input',
                 'renderType' => 'inputDateTime',
@@ -151,7 +151,11 @@ return [
         ],
 
 
-        // Structured Data Felder
+        // Structured Data fields
+        'sd_company' => [
+            'label' => 'Firma',
+            'config' => ['type' => 'input', 'size' => 50],
+        ],
         'sd_street' => [
             'label' => 'Straße',
             'config' => ['type' => 'input', 'size' => 50],
@@ -188,8 +192,7 @@ return [
 
 
 
-
-        // Systemfelder
+        // System fields
         'hidden' => ['label' => 'Versteckt', 'config' => ['type' => 'check']],
         'starttime' => ['label' => 'Startzeit', 'config' => ['type' => 'datetime']],
         'endtime' => ['label' => 'Endzeit', 'config' => ['type' => 'datetime']],
@@ -205,6 +208,7 @@ return [
             ],
         ],
 
+        /*
         'settings' => [
             'label' => 'Zusatzinfos (FlexForm)',
             'config' => [
@@ -212,6 +216,7 @@ return [
                 'ds' => 'FILE:EXT:jobman/Configuration/FlexForms/JobSettings.xml',
             ],
         ],
+        */
     ],
 
     'types' => [
@@ -224,7 +229,7 @@ description, salary,
 --div--;Kontakt,
 address_mode, address_tt, address_manual,
 --div--;Structured Data,
-sd_street, sd_postalcode, sd_city, sd_region, sd_country, valid_through,
+sd_company, sd_street, sd_postalcode, sd_city, sd_region, sd_country, valid_through,
 --div--;core.form.tabs:language,--palette--;;paletteLanguage,
 --div--;core.form.tabs:access,hidden,--palette--;;paletteTimes,
 ',

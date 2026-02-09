@@ -53,6 +53,9 @@
       <trans-unit id="job.per_diem">
         <source>Temporary help</source>
       </trans-unit>
+      <trans-unit id="job.contact">
+        <source>Contact</source>
+      </trans-unit>
 
     </body>
   </file>

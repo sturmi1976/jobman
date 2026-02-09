@@ -128,8 +128,8 @@ class JobController extends ActionController
                 "currency" => "EUR",
                 "value" => [
                     "@type" => "QuantitativeValue",
-                    "value" => floatval(str_replace(['€', ','], ['', '.'], $job->getSalary())), // konvertiert z.B. "3.000€" => 3000
-                    "unitText" => "MONTH"
+                    "value" => floatval(str_replace(['€', ','], ['', '.'], $job->getSalary())),
+                    "unitText" => "YEAR"
                 ]
             ],
         ];

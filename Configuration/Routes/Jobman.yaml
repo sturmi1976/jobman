@@ -1,0 +1,22 @@
+routeEnhancers:
+  Jobman:
+    type: Extbase
+    extension: Jobman
+    plugin: Pi1
+
+    defaultController: 'Job::list'
+
+    routes:
+      - routePath: '/'
+        _controller: 'Job::list'
+
+      - routePath: '/job/{job}'
+        _controller: 'Job::show'
+        _arguments:
+          job: job
+
+    aspects:
+      job:
+        type: PersistedAliasMapper
+        tableName: tx_jobman_domain_model_job
+        routeFieldName: slug

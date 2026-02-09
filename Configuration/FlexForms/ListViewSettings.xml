@@ -69,6 +69,18 @@
                     </settings.accordionType>
 
 
+
+                    <settings.detailButton>
+                        <label>Button / Link für Detailansicht anzeigen?</label>
+                        <displayCond>FIELD:settings.display:=:accordion</displayCond>
+                        <config>
+                            <type>check</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>0</default>
+                        </config>
+                    </settings.detailButton>
+
+
                     <settings.sysFolder>
                         <label>Job-SysFolder auswählen</label>
                         <config>

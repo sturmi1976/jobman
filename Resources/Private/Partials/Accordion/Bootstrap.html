@@ -1,13 +1,13 @@
 {namespace job=Lanius\Jobman\ViewHelpers}
 
-
-<div class="accordion" id="jobAccordion">
+<div class="accordion jobman-accordion" id="jobAccordion">
     <f:for each="{jobs}" as="job" iteration="iterator">
-        <div class="accordion-item">
+        <div class="accordion-item mb-3 shadow-sm rounded">
 
+            <!-- Header -->
             <h2 class="accordion-header" id="heading{iterator.index}">
                 <button
-                    class="accordion-button collapsed"
+                    class="accordion-button collapsed bg-light text-dark"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#collapse{iterator.index}"
@@ -18,6 +18,7 @@
                 </button>
             </h2>
 
+            <!-- Body -->
             <div
                 id="collapse{iterator.index}"
                 class="accordion-collapse collapse"
@@ -26,49 +27,102 @@
             >
                 <div class="accordion-body">
 
-                    <p>
+                    <!-- Location -->
+                    <p class="mb-1">
                         <strong>
                             <f:translate 
-    key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.location"
-    languageKey="{job:languageKey()}" />:
+                                key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.location"
+                                languageKey="{job:languageKey()}" />:
                         </strong>
                         {job.location}
                     </p>
 
-                    <p>
-                        <strong>
-                            <f:translate key="job.employmentType" extensionName="Jobman" languageKey="{job:languageKey()}" />:
-                        </strong>
-                        <f:if condition="{job.employmentType} == 'FULL_TIME'">
-                            <f:then>
-                                Vollzeit
-                            </f:then>
-                            <f:else if="{job.employmentType} == 'PART_TIME'">
-                                Teilzeit
-                            </f:else>
-                            <f:else if="{job.employmentType} == 'CONTRACTOR'">
-                                Freelancer
-                            </f:else>
-                        </f:if>
-                    </p>
-
-                    <f:format.raw>{job.description}</f:format.raw> 
-
-                    <f:if condition="{job.remote}">
-                        <p>
-                            <em>
-                                <f:translate key="job.remote" languageKey="{job:languageKey()}" />
-                            </em>
-                        </p>
+                    <!-- Employment Type as Badge -->
+                    <f:if condition="{job.employmentType}">
+                        <span class="badge bg-primary me-1">
+                            <f:switch expression="{job.employmentType}">
+                                <f:case value="FULL_TIME">
+                                    <f:translate key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.fulltime" languageKey="{job:languageKey()}" />
+                                </f:case>
+                                <f:case value="PART_TIME">
+                                    <f:translate key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.parttime" languageKey="{job:languageKey()}" />
+                                </f:case>
+                                <f:case value="CONTRACTOR">
+                                    <f:translate key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.contractor" languageKey="{job:languageKey()}" />
+                                </f:case>
+                                <f:case value="TEMPORARY">
+                                    <f:translate key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.temporary" languageKey="{job:languageKey()}" />
+                                </f:case>
+                                <f:case value="INTERN">
+                                    <f:translate key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.intern" languageKey="{job:languageKey()}" />
+                                </f:case>
+                                <f:case value="VOLUNTEER">
+                                    <f:translate key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.volunteer" languageKey="{job:languageKey()}" />
+                                </f:case>
+                                <f:case value="PER_DIEM">
+                                    <f:translate key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.per_diem" languageKey="{job:languageKey()}" />
+                                </f:case>
+                            </f:switch>
+                        </span>
                     </f:if>
 
+                    <!-- Remote -->
+         
+                    <f:if condition="{job.remote}">
+    <p class="text-muted fst-italic mb-1">
+        <f:translate key="job.remote" languageKey="{job:languageKey()}" />
+        <f:if condition="{job.remoteType}">
+            <span class="badge bg-info ms-2">
+                <f:switch expression="{job.remoteType}">
+                    <f:case value="HYBRID">
+                        <f:translate key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.remoteType.hybrid" languageKey="{job:languageKey()}" />
+                    </f:case>
+                    <f:case value="FULL_REMOTE">
+                        <f:translate key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.remoteType.full_remote" languageKey="{job:languageKey()}" />
+                    </f:case>
+                    <f:case value="REMOTE_EU">
+                        <f:translate key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.remoteType.remote_eu" languageKey="{job:languageKey()}" />
+                    </f:case>
+                    <f:case value="REMOTE_WORLD">
+                        <f:translate key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.remoteType.remote_world" languageKey="{job:languageKey()}" />
+                    </f:case>
+                </f:switch>
+            </span>
+        </f:if>
+    </p>
+</f:if>
+
+
+
+                    <!-- Salary -->
                     <f:if condition="{job.salary}">
-                        <p>
+                        <p class="mb-2">
                             <strong>
                                 <f:translate key="job.salary" languageKey="{job:languageKey()}" />:
                             </strong>
                             {job.salary}
                         </p>
+                    </f:if>
+
+                    <!-- Job Description -->
+                    <f:if condition="{settings.detailButton}">
+                        <div class="jobDescription mb-2">
+                            <f:format.raw>
+                                {job.description -> f:format.crop(maxCharacters: 150, append: '…')}
+                            </f:format.raw>
+
+                            <f:link.action action="show" arguments="{job: job}" class="btn btn-sm btn-primary mt-2">
+                                <f:translate 
+                                    key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.showDetail"
+                                    languageKey="{job:languageKey()}" 
+                                />
+                            </f:link.action>
+                        </div>
+                    </f:if>
+                    <f:if condition="{settings.detailButton} == false">
+                        <div class="jobDescription">
+                            <f:format.raw>{job.description}</f:format.raw>
+                        </div>
                     </f:if>
 
                 </div>

@@ -54,6 +54,27 @@
       <trans-unit id="job.contact">
         <source>Kontakt</source>
       </trans-unit>
+      <trans-unit id="job.showDetail">
+        <source>Stellenangebot zeigen</source>
+      </trans-unit>
+      <trans-unit id="job.jobHeadline">
+        <source>Stellenbeschreibung</source>
+      </trans-unit>
+      <trans-unit id="job.remoteType.hybrid">
+                <source>Hybrid (Büro &amp; Remote)</source>
+            </trans-unit>
+
+            <trans-unit id="job.remoteType.full_remote">
+                <source>Vollständig Remote</source>
+            </trans-unit>
+
+            <trans-unit id="job.remoteType.remote_eu">
+                <source>Remote innerhalb Europas</source>
+            </trans-unit>
+
+            <trans-unit id="job.remoteType.remote_world">
+                <source>Weltweit Remote</source>
+            </trans-unit>
 
     </body>
   </file>

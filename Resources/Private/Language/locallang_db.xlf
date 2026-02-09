@@ -15,7 +15,7 @@
         <source>Employment Type</source>
       </trans-unit>
       <trans-unit id="tx_jobman_domain_model_job.salary">
-        <source>Salary</source>
+        <source>Salary / Year</source>
       </trans-unit>
       <trans-unit id="tx_jobman_domain_model_job.remote">
         <source>Remote possible</source>

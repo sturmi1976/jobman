@@ -30,6 +30,18 @@ class Job extends AbstractEntity
     protected int $addressTt = 0;
     protected string $addressManual = '';
 
+    protected string $remoteType = '';
+
+    public function getRemoteType(): string
+    {
+        return $this->remoteType;
+    }
+
+    public function setRemoteType(string $remoteType): void
+    {
+        $this->remoteType = $remoteType;
+    }
+
 
     public function getAddressMode(): string
     {

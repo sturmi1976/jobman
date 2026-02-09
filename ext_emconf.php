@@ -2,12 +2,12 @@
 
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Job Manager',
-    'description' => 'Manage job postings in TYPO3',
+    'description' => 'Job listings with Google for Jobs microdata and tt_address support, featuring flexible display options such as accordions, tiles, and detailed job views.',
     'category' => 'plugin',
     'author' => 'Andre Lanius',
     'author_email' => 'a-lanius@web.de',
     'state' => 'stable',
-    'version' => '1.0.0',
+    'version' => '1.1.0',
     'constraints' => [
         'depends' => [
             'typo3' => '13.4.0-14.9.99',

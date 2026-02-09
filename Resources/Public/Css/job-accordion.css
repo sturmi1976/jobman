@@ -52,3 +52,45 @@
     font-weight: bold;
     transition: transform 0.3s ease;
 }
+
+
+
+
+
+/* ===================================================== */
+.jobman-accordion .accordion-item {
+    border: none;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+.jobman-accordion .accordion-button {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: #212529;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    transition: background-color 0.3s ease;
+}
+
+.jobman-accordion .accordion-button:not(.collapsed) {
+    background-color: #e9ecef;
+}
+
+.jobman-accordion .accordion-body {
+    padding: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.jobman-accordion .jobDescription {
+    margin-top: 0.5rem;
+}
+
+.jobman-accordion .badge {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    padding: 0.35em 0.6em;
+}

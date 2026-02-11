@@ -32,6 +32,66 @@ class Job extends AbstractEntity
 
     protected string $remoteType = '';
 
+    protected bool $showButton;
+
+    protected string $buttonType = '';
+
+    protected string $externLink = '';
+    protected string $email = '';
+
+
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
+    }
+
+    /* ==========================
+       Show Button
+       ========================== */
+
+    public function getShowButton(): bool
+    {
+        return $this->showButton;
+    }
+
+    public function setShowButton(bool $showButton): void
+    {
+        $this->showButton = $showButton;
+    }
+
+    /* ==========================
+       Button Type
+       ========================== */
+
+    public function getButtonType(): string
+    {
+        return $this->buttonType;
+    }
+
+    public function setButtonType(string $buttonType): void
+    {
+        $this->buttonType = $buttonType;
+    }
+
+    /* ==========================
+       External Link
+       ========================== */
+
+    public function getExternLink(): string
+    {
+        return $this->externLink;
+    }
+
+    public function setExternLink(string $externLink): void
+    {
+        $this->externLink = $externLink;
+    }
+
     public function getRemoteType(): string
     {
         return $this->remoteType;

@@ -1,0 +1,34 @@
+{namespace job=Lanius\Jobman\ViewHelpers}
+
+<f:form
+    action="submitApplication"
+    controller="Job"
+    arguments="{job: job}"
+    enctype="multipart/form-data"
+    method="post"
+    class="jobman-application-form"
+>
+    <div class="form-group">
+        <label for="name">Name</label>
+        <f:form.textfield name="name" id="name" required="required" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="email">E-Mail</label>
+        <f:form.textfield name="email" id="email" type="email" required="required" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="message">Nachricht</label>
+        <f:form.textarea name="message" id="message" rows="5" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="attachments">Dokumente hochladen</label>
+        <f:form.upload name="file" id="attachments" class="form-control" multiple="multiple" class="form-control" accept=".doc,.pdf,.png,.jpg,.zip,.rar" />
+    </div>
+
+    <f:form.hidden property="job" value="{job.uid}" />
+
+    <f:form.submit value="Bewerbung absenden" name="submit" class="btn btn-primary mt-3" />
+</f:form>

@@ -77,6 +77,18 @@
             <trans-unit id="job.remoteType.remote_world">
                 <source>Remote worldwide</source>
             </trans-unit>
+            <trans-unit id="mailSubject">
+                <source>Bewerbung zu: </source>
+            </trans-unit>
+            <trans-unit id="applicationFrom">
+                <source>Bewerbung von</source>
+            </trans-unit>
+            <trans-unit id="message">
+                <source>Message: </source>
+            </trans-unit>
+            <trans-unit id="subject_label">
+                <source>Application to:</source>
+            </trans-unit>
 
     </body>
   </file>

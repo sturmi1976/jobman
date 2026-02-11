@@ -8,8 +8,13 @@ ExtensionUtility::configurePlugin(
     'Jobman',
     'Pi1',
     [
-        JobController::class => 'list, show'
+        JobController::class => 'list, show, application, submitApplication'
     ],
-    [],
+    [
+        JobController::class => 'application, submitApplication'
+    ],
     ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT,
 );
+
+$GLOBALS['TYPO3_CONF_VARS']['MAIL']['templateRootPaths'][700] = 'EXT:jobman/Resources/Private/Templates/Email';
+$GLOBALS['TYPO3_CONF_VARS']['MAIL']['layoutRootPaths'][700] = 'EXT:jobman/Resources/Private/Layouts/Email';

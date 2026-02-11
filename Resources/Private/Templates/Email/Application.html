@@ -1,0 +1,18 @@
+<f:layout name="Application" />
+
+<f:section name="Subject">
+    {subject_label}: {job.title}
+</f:section>
+
+<f:section name="Main">
+    <h1>{applicationFrom}: {name}</h1>
+    <p>
+        Name: {name}<br />
+        E-Mail: {email}<br /> 
+
+        <f:if condition="{message}">
+        {message_label}:<br />
+        <f:format.raw>{message}</f:format.raw>
+        </f:if>
+    </p>
+</f:section>

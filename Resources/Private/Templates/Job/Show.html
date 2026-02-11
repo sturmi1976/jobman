@@ -1,5 +1,9 @@
 {namespace job=Lanius\Jobman\ViewHelpers}
 
+
+<f:flashMessages />
+
+
 <div class="jobman-job-detail">
 
     <!-- Back link -->
@@ -135,6 +139,26 @@
                 </f:else>
             </f:if>
         </f:if>
+
+        <!-- Button -->
+         <f:if condition="{job.showButton}">
+            
+            <f:if condition="{job.buttonType} == 'link'">
+                <f:link.external
+                    uri="{job.externLink}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-primary">
+                    Jetzt bewerben
+                </f:link.external>
+                <f:else>
+                    <f:link.action action="application" class="btn btn-primary" rel="noopener noreferrer" additionalAttributes="{data-job: job.uid}" arguments="{job: job.uid}">
+                        Jetzt bewerben
+                    </f:link.action>
+                </f:else>
+            </f:if>
+         </f:if>
+
     </section>
 
     <!-- Footer -->

@@ -96,6 +96,54 @@ return [
             ],
         ],
 
+
+
+        'show_button' => [
+            'label' => 'Bewerbungs-Button anzeigen',
+            'config' => [
+                'type' => 'check',
+                'default' => 0,
+                'onChange' => 'reload',
+            ],
+        ],
+
+        'button_type' => [
+            'label' => 'Button Typ',
+            'displayCond' => 'FIELD:show_button:REQ:true',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    ['Bewerbungsformular', 'form'],
+                    ['Externer Link', 'link'],
+                ],
+                'default' => '',
+                'onChange' => 'reload',
+            ],
+        ],
+
+        'extern_link' => [
+            'label' => 'Externer Link zum Bewerbungsformular',
+            'description' => 'Hier kannst du einen externen Link zu einem Bewerbungsformular oder einem Stellenagebot angeben.',
+            'displayCond' => 'FIELD:button_type:=:link',
+            'config' => [
+                'type' => 'input',
+                //'renderType' => 'inputLink',
+                'eval' => 'trim',
+            ],
+        ],
+
+        'email' => [
+            'label' => 'E-Mail Adresse wohin die Bewerbung gesendet wird',
+            'description' => 'Alle Daten des Bewerbers inkl. Anhänge werden an diese E-Mail versendet.',
+            'displayCond' => 'FIELD:button_type:=:form',
+            'config' => [
+                'type' => 'input',
+                'eval' => 'trim',
+            ],
+        ],
+
+
         'address_mode' => [
             'label' => 'Kontaktadresse',
             'config' => [
@@ -223,7 +271,7 @@ return [
         '0' => [
             'showitem' => '
 --div--;core.form.tabs:general,
-title, slug, location, employment_type, remote, remote_type, settings,
+title, slug, location, employment_type, remote, remote_type, show_button, button_type, extern_link, email, settings,
 --div--;Details,
 description, salary,
 --div--;Kontakt,

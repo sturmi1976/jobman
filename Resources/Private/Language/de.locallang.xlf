@@ -81,11 +81,45 @@
             <trans-unit id="applicationFrom">
                 <source>Bewerbung von</source>
             </trans-unit>
-            <trans-unit id="message">
+            <trans-unit id="message_label">
                 <source>Nachricht: </source>
             </trans-unit> 
             <trans-unit id="subject_label">
                 <source>Bewerbung zu:</source>
+            </trans-unit>
+            <trans-unit id="success_title">
+                <source>Bewerbung versendet</source>
+            </trans-unit>
+            <trans-unit id="success_headline">
+                <source>Bewerbung erfolgreich eingereicht</source>
+            </trans-unit>
+            <trans-unit id="success_text">
+                <source><![CDATA[Vielen Dank für Ihre Bewerbung.<br>Wir haben Ihre Unterlagen erhalten und werden sie sorgfältig prüfen.<br>
+Unser Team meldet sich schnellstmöglich bei Ihnen.]]></source>
+            </trans-unit>
+            <trans-unit id="success_linktext">
+                <source>Zurück zur Übersicht</source>
+            </trans-unit>
+            <trans-unit id="fullname">
+                <source>Vor- und Nachname</source>
+            </trans-unit>
+            <trans-unit id="email_address">
+                <source>E-Mail Adresse</source>
+            </trans-unit>
+            <trans-unit id="message">
+                <source>Nachricht</source>
+            </trans-unit>
+            <trans-unit id="upload_label">
+                <source>Dokumente hochladen</source>
+            </trans-unit>
+            <trans-unit id="upload_sublabel">
+                <source>Das Hochladen von Dokumenten ist hier möglich, einschließlich der Mehrfachauswahl. (Lebenslauf, Zeugnisse, etc.)</source>
+            </trans-unit>
+            <trans-unit id="allowed_formats_label">
+                <source>Erlaubte Formate</source>
+            </trans-unit>
+            <trans-unit id="submit_text">
+                <source>Bewerbung absenden</source>
             </trans-unit>
 
     </body>

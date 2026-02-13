@@ -30,9 +30,6 @@ CREATE TABLE tx_jobman_domain_model_job (
     KEY parent (pid)
 );
 
-
-
-
 CREATE TABLE tx_jobman_job_views (
     uid INT(11) NOT NULL AUTO_INCREMENT,
     job INT(11) NOT NULL,
@@ -41,3 +38,22 @@ CREATE TABLE tx_jobman_job_views (
     PRIMARY KEY(uid),
     UNIQUE KEY unique_view (job, ip)
 );
+
+CREATE TABLE tx_jobman_domain_model_application (
+    uid INT(11) NOT NULL auto_increment,
+    pid INT(11) DEFAULT 0 NOT NULL,
+
+    job INT(11) DEFAULT 0 NOT NULL,
+    name VARCHAR(255) DEFAULT '' NOT NULL,
+    email VARCHAR(255) DEFAULT '' NOT NULL,
+    message TEXT,
+
+    tstamp INT(11) DEFAULT 0 NOT NULL,
+    crdate INT(11) DEFAULT 0 NOT NULL,
+    deleted TINYINT(1) DEFAULT 0 NOT NULL,
+    hidden TINYINT(1) DEFAULT 0 NOT NULL,
+
+    PRIMARY KEY (uid),
+    KEY parent (pid)
+);
+

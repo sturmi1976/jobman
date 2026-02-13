@@ -8,10 +8,10 @@ ExtensionUtility::configurePlugin(
     'Jobman',
     'Pi1',
     [
-        JobController::class => 'list, show, application, submitApplication'
+        JobController::class => 'list, show, application, submitApplication, success'
     ],
     [
-        JobController::class => 'application, submitApplication'
+        JobController::class => 'application, submitApplication, success'
     ],
     ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT,
 );

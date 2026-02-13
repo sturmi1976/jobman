@@ -7,11 +7,25 @@ routeEnhancers:
     defaultController: 'Job::list'
 
     routes:
+      # Job Übersicht
       - routePath: '/'
         _controller: 'Job::list'
 
+      # Job Detail
       - routePath: '/job/{job}'
         _controller: 'Job::show'
+        _arguments:
+          job: job
+
+      # Bewerbungsformular
+      - routePath: '/job/{job}/apply'
+        _controller: 'Job::application'
+        _arguments:
+          job: job
+
+      # Success-Seite
+      - routePath: '/job/{job}/success'
+        _controller: 'Job::success'
         _arguments:
           job: job
 

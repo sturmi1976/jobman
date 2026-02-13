@@ -1,34 +1,90 @@
 {namespace job=Lanius\Jobman\ViewHelpers}
 
+<f:asset.css identifier="job-success" href="EXT:jobman/Resources/Public/Css/job-form.css" />
+
 <f:form
     action="submitApplication"
     controller="Job"
     arguments="{job: job}"
     enctype="multipart/form-data"
     method="post"
-    class="jobman-application-form"
+    class="jobman-form"
 >
-    <div class="form-group">
-        <label for="name">Name</label>
-        <f:form.textfield name="name" id="name" required="required" class="form-control" />
+
+    <div class="jobman-form__group">
+        <label for="name" class="jobman-form__label">
+            <f:translate
+                key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:fullname"
+                languageKey="{job:languageKey()}" /> <span class="req">*</span></label>
+        <f:form.textfield
+            name="name"
+            id="name"
+            required="required"
+            class="jobman-form__input"
+        />
     </div>
 
-    <div class="form-group">
-        <label for="email">E-Mail</label>
-        <f:form.textfield name="email" id="email" type="email" required="required" class="form-control" />
+    <div class="jobman-form__group">
+        <label for="email" class="jobman-form__label">
+            <f:translate
+                key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:email_address"
+                languageKey="{job:languageKey()}" /> <span class="req">*</span></label>
+        <f:form.textfield
+            name="email"
+            id="email"
+            type="email"
+            required="required"
+            class="jobman-form__input"
+        />
     </div>
 
-    <div class="form-group">
-        <label for="message">Nachricht</label>
-        <f:form.textarea name="message" id="message" rows="5" class="form-control" />
+    <div class="jobman-form__group">
+        <label for="message" class="jobman-form__label">
+            <f:translate
+                key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:message"
+                languageKey="{job:languageKey()}" />
+        </label>
+        <f:form.textarea
+            name="message"
+            id="message"
+            rows="5"
+            class="jobman-form__textarea"
+        />
     </div>
 
-    <div class="form-group">
-        <label for="attachments">Dokumente hochladen</label>
-        <f:form.upload name="file" id="attachments" class="form-control" multiple="multiple" class="form-control" accept=".doc,.pdf,.png,.jpg,.zip,.rar" />
+    <div class="jobman-form__group">
+        <label for="attachments" class="jobman-form__label">
+            <f:translate
+                key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:upload_label"
+                languageKey="{job:languageKey()}" />
+            <small class="jobman-form__hint" style="display:block;">
+                <f:translate
+                key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:upload_sublabel"
+                languageKey="{job:languageKey()}" />
+            </small>
+        </label>
+        <f:form.upload
+            name="file"
+            id="attachments"
+            class="jobman-form__file"
+            multiple="multiple"
+            accept=".doc,.pdf,.png,.jpg,.zip"
+        />
+        <small class="jobman-form__hint">
+            <f:translate
+                key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:allowed_formats_label"
+                languageKey="{job:languageKey()}" />: PDF, DOC, JPG, PNG, ZIP
+        </small>
     </div>
 
     <f:form.hidden property="job" value="{job.uid}" />
 
-    <f:form.submit value="Bewerbung absenden" name="submit" class="btn btn-primary mt-3" />
+    <div class="jobman-form__actions">
+        <f:form.submit
+            value="{submit_text}"
+            name="submit"
+            class="jobman-form__button"
+        />
+    </div>
+
 </f:form>

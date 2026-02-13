@@ -102,9 +102,33 @@
                                 </elementBrowser>
                             </fieldControl>
                             <foreign_table_where>AND pages.doktype = 254</foreign_table_where> 
-                            <!-- 254 = Typ SysFolder -->
                         </config>
                     </settings.sysFolder>
+
+
+                    <settings.applicationPID>
+                        <label>Ordner wo Bewerbungen gespeichert werden</label>
+                        <config>
+                            <type>group</type>
+                            <internal_type>db</internal_type>
+                            <allowed>pages</allowed>
+                            <size>1</size>
+                            <maxitems>1</maxitems>
+                            <minitems>0</minitems>
+                            <show_thumbs>1</show_thumbs>
+                            <appearance>
+                                <elementBrowserAllowed>pages</elementBrowserAllowed>
+                                <elementBrowserType>db</elementBrowserType>
+                                <elementBrowserTitle>Seite auswählen</elementBrowserTitle>
+                            </appearance>
+                            <fieldControl>
+                                <elementBrowser>
+                                    <disabled>false</disabled>
+                                </elementBrowser>
+                            </fieldControl>
+                            <foreign_table_where>AND pages.doktype = 254</foreign_table_where> 
+                        </config>
+                    </settings.applicationPID>
 
                 </el>
             </ROOT>

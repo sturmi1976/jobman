@@ -1,0 +1,99 @@
+.jobman-form {
+    /*max-width: 700px;*/
+    margin: 2rem auto;
+    padding: 2.5rem;
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.06);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.jobman-form__group {
+    margin-bottom: 1.8rem;
+    display: flex;
+    flex-direction: column;
+}
+
+span.req {
+    color:rgb(194, 19, 19);
+}
+
+.jobman-form__label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #1f2937;
+}
+
+.jobman-form__input,
+.jobman-form__textarea,
+.jobman-form__file {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    background: #f9fafb;
+}
+
+.jobman-form__textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.jobman-form__input:focus,
+.jobman-form__textarea:focus,
+.jobman-form__file:focus {
+    outline: none;
+    border-color: #2563eb;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.jobman-form__hint {
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin-top: 0.4rem;
+}
+
+.jobman-form__actions {
+    margin-top: 2rem;
+    text-align: right;
+}
+
+.jobman-form__button {
+    background: #2563eb;
+    color: #ffffff;
+    border: none;
+    padding: 0.9rem 1.8rem;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.jobman-form__button:hover {
+    background: #1e40af;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+}
+
+.jobman-form__button:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .jobman-form {
+        padding: 1.5rem;
+    }
+
+    .jobman-form__actions {
+        text-align: center;
+    }
+
+    .jobman-form__button {
+        width: 100%;
+    }
+}

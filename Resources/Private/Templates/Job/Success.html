@@ -1,0 +1,33 @@
+{namespace job=Lanius\Jobman\ViewHelpers}
+
+<f:asset.css identifier="job-success" href="EXT:jobman/Resources/Public/Css/job-success.css" />
+
+
+<div class="jobman-success">
+    <div class="jobman-success__icon">
+        ✓
+    </div>
+    <div class="jobman-success__content">
+        <h2 class="jobman-success__title">
+            <f:translate
+                key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:success_headline"
+                languageKey="{job:languageKey()}" />
+        </h2>
+        <p class="jobman-success__text">
+            <f:format.raw>
+                <f:translate
+                key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:success_text"
+                languageKey="{job:languageKey()}" />
+            </f:format.raw>
+        </p>
+
+
+        <f:link.action action="list" class="jobman-success__button">
+            <f:translate
+                key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:success_linktext"
+                languageKey="{job:languageKey()}" />
+        </f:link.action>
+    </div>
+</div>
+
+ 

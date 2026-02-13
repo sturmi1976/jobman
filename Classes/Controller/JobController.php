@@ -10,6 +10,7 @@ use TYPO3\CMS\Core\Page\AssetCollector;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use \TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
+use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 
 
 use TYPO3\CMS\Core\Context\Context;
@@ -31,16 +32,35 @@ use TYPO3\CMS\Core\Resource\StorageRepository;
 
 use TYPO3\CMS\Core\Resource\Enum\DuplicationBehavior;
 
+use Lanius\Jobman\Domain\Model\Application;
+use Lanius\Jobman\Domain\Repository\ApplicationRepository;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+use TYPO3\CMS\Core\Resource\FileReference;
+
+use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
+
 use Lanius\Jobman\PageTitle\TitleTag;
+
+use TYPO3\CMS\Extbase\Domain\Model\FileReference as ExtbaseFileReference;
+use TYPO3\CMS\Core\Resource\FileReference as CoreFileReference;
 
 class JobController extends ActionController
 {
+    //protected ?TitleTag $titleProvider = null;
 
-    public function __construct(
-        protected JobRepository $jobRepository,
-        protected TitleTag $titleProvider
-    ) {}
 
+    protected JobRepository $jobRepository;
+    protected ApplicationRepository $applicationRepository;
+    protected PersistenceManagerInterface $persistenceManager;
+    protected TitleTag $titleProvider;
+
+    public function initializeAction(): void
+    {
+        $this->jobRepository = GeneralUtility::makeInstance(JobRepository::class);
+        $this->applicationRepository = GeneralUtility::makeInstance(ApplicationRepository::class);
+        $this->persistenceManager = GeneralUtility::makeInstance(PersistenceManagerInterface::class);
+        $this->titleProvider = GeneralUtility::makeInstance(TitleTag::class);
+    }
 
 
 
@@ -50,6 +70,7 @@ class JobController extends ActionController
         /** @var Locale $locale */
         $locale = $language->getLocale();
         $languageKey = $locale->getLanguageCode();
+
 
         $jobs = $this->jobRepository->findAllActive((int)$this->settings['sysFolder']);
 
@@ -202,10 +223,18 @@ class JobController extends ActionController
 
     public function applicationAction(\Lanius\Jobman\Domain\Model\Job $job): ResponseInterface
     {
+        $language = $this->request->getAttribute('language');
+        /** @var Locale $locale */
+        $locale = $language->getLocale();
+        $languageKey = $locale->getLanguageCode();
+
+        $submit_text = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('submit_text', 'jobman', [], $languageKey);
+
         // Title Tag for application
         $this->titleProvider->setTitle('Bewerbung für: ' . htmlspecialchars($job->getTitle()));
 
         $this->view->assign('job', $job);
+        $this->view->assign('submit_text', $submit_text);
 
         return $this->htmlResponse();
     }
@@ -216,99 +245,128 @@ class JobController extends ActionController
     {
         $requestData = $this->request->getArguments();
 
-        if (isset($requestData['submit'])) {
-
-            $name = htmlspecialchars($requestData['name']);
-            $mail = htmlspecialchars($requestData['email']);
-            $message = nl2br(htmlspecialchars($requestData['message']));
-
-            $language = $this->request->getAttribute('language');
-            /** @var Locale $locale */
-            $locale = $language->getLocale();
-            $languageKey = $locale->getLanguageCode();
-
-            // Translate labels
-            $subject = LocalizationUtility::translate('mailSubject', 'jobman') ?? 'Bewerbung für ';
-            $subject = $subject . $job->getTitle();
-
-            $subject_label = LocalizationUtility::translate('subject_label', 'jobman', [], $languageKey);
-
-            $applicationFrom = LocalizationUtility::translate('applicationFrom', 'jobman', [], $languageKey);
-            $message_label = LocalizationUtility::translate('message', 'jobman', [], $languageKey);
-
-            //$subject_label = LocalizationUtility::translate('subject_label', 'jobman');
-
-            $email = new FluidEmail();
-            $email
-                ->to($job->getEmail())
-                ->from(new Address($mail, $name))
-                ->subject($subject)
-                ->format(FluidEmail::FORMAT_HTML) // send HTML and plaintext mail
-                ->setTemplate('Application')
-                ->assign('name', $name)
-                ->assign('email', $mail)
-                ->assign('message', $message)
-                ->assign('job', $job)
-                ->assign('applicationFrom', $applicationFrom)
-                ->assign('message_label', $message_label)
-                ->assign('subject_label', $subject_label);
-
-            $attachments = $this->uploadApplicationFiles($requestData['name']);
-
-            foreach ($attachments as $filePath) {
-                $email->attachFromPath($filePath);
-            }
-            GeneralUtility::makeInstance(MailerInterface::class)->send($email);
-
-
-            $this->addFlashMessage(
-                'Bewerbung erfolgreich versendet.',
-                'Erfolg',
-                \TYPO3\CMS\Core\Type\ContextualFeedbackSeverity::OK
-            );
+        if (!isset($requestData['submit'])) {
+            return $this->redirect('show', 'Job', null, ['job' => $job]);
         }
 
-        return $this->redirect(
-            'show',
-            'Job',
-            null,
-            ['job' => $job]
+        // ------------------------------
+        // 1️⃣ Formular-Daten
+        // ------------------------------
+        $name = htmlspecialchars($requestData['name']);
+        $mail = htmlspecialchars($requestData['email']);
+        $message = nl2br(htmlspecialchars($requestData['message']));
+
+
+        $language = $this->request->getAttribute('language');
+        /** @var Locale $locale */
+        $locale = $language->getLocale();
+        $languageKey = $locale->getLanguageCode();
+
+        if (isset($this->settings['applicationPID'])) {
+            $pid = $this->settings['applicationPID'];
+        } else {
+            $pid = $this->settings['sysFolder'];
+        }
+
+        $application = new \Lanius\Jobman\Domain\Model\Application();
+        $application->setPid((int)$pid);
+        $application->setJob($job);
+        $application->setName($name);
+        $application->setEmail($mail);
+        $application->setMessage($message);
+
+        $uploadedFalFiles = $this->uploadApplicationFiles($name);
+
+        $fileStorage = new ObjectStorage();
+
+        foreach ($uploadedFalFiles as $coreFileReference) {
+            $extbaseFileReference = GeneralUtility::makeInstance(ExtbaseFileReference::class);
+            $extbaseFileReference->setOriginalResource($coreFileReference);
+            $fileStorage->attach($extbaseFileReference);
+        }
+
+        $application->setFiles($fileStorage);
+
+        $application->setFiles($fileStorage);
+
+        $this->applicationRepository->add($application);
+        $this->persistenceManager->persistAll();
+
+        // ------------------------------
+        // 4️⃣ E-Mail versenden
+        // ------------------------------
+        $subject = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('mailSubject', 'jobman', [], $languageKey);
+        $subject .= $job->getTitle();
+
+        $subject_label = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('mailSubject', 'jobman', [], $languageKey);
+        $applicationFrom = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('applicationFrom', 'jobman', [], $languageKey);
+        $messageLabel = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('message_label', 'jobman', [], $languageKey);
+
+        $email = new \TYPO3\CMS\Core\Mail\FluidEmail();
+        $email
+            ->to($job->getEmail())
+            ->from(new \Symfony\Component\Mime\Address($mail, $name))
+            //->subject($subject)
+            ->format(\TYPO3\CMS\Core\Mail\FluidEmail::FORMAT_HTML)
+            ->setTemplate('Application')
+            ->assign('name', $name)
+            ->assign('email', $mail)
+            ->assign('message', $message)
+            ->assign('subject_label', $subject_label)
+            ->assign('applicationFrom', $applicationFrom)
+            ->assign('message_label', $messageLabel)
+            ->assign('job', $job);
+
+        foreach ($uploadedFalFiles as $coreFileReference) {
+            $email->attachFromPath($coreFileReference->getForLocalProcessing(false));
+        }
+
+        \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Mail\MailerInterface::class)->send($email);
+
+        // ------------------------------
+        // 5️⃣ Erfolgsmeldung & Redirect
+        // ------------------------------
+        $this->addFlashMessage(
+            'Application successfully submitted.',
+            'Success',
+            \TYPO3\CMS\Core\Type\ContextualFeedbackSeverity::OK
         );
+
+        //return $this->redirect('show', 'Job', null, ['job' => $job]);
+        return $this->redirect('success', 'Job', null, ['job' => $job]);
     }
 
 
+    /**
+     * Upload Function: speichert Dateien in FAL unter fileadmin/bewerbungen/{ApplicantName}
+     *
+     * @param string $name
+     * @return CoreFileReference[]
+     */
     public function uploadApplicationFiles(string $name): array
     {
-        $savedFiles = [];
+        $savedFileReferences = [];
 
+        /** @var StorageRepository $storageRepository */
         $storageRepository = GeneralUtility::makeInstance(StorageRepository::class);
-        $storage = $storageRepository->findByUid(1);
+        $storage = $storageRepository->findByUid(1); // FAL Storage UID
 
         $baseFolderName = 'bewerbungen';
-
-        if (!$storage->hasFolder($baseFolderName)) {
-            $baseFolder = $storage->createFolder($baseFolderName);
-        } else {
-            $baseFolder = $storage->getFolder($baseFolderName);
-        }
+        $baseFolder = $storage->hasFolder($baseFolderName)
+            ? $storage->getFolder($baseFolderName)
+            : $storage->createFolder($baseFolderName);
 
         $applicantName = preg_replace('/[^a-zA-Z0-9_-]/', '_', $name);
-
+        $applicantFolder = $baseFolder->hasFolder($applicantName)
+            ? $baseFolder->getSubfolder($applicantName)
+            : $storage->createFolder($applicantName, $baseFolder);
 
         $uploadedFiles = $this->request->getUploadedFiles();
 
         if (!empty($uploadedFiles['file'])) {
-
-            if (!$baseFolder->hasFolder($applicantName)) {
-                $applicantFolder = $storage->createFolder($applicantName, $baseFolder);
-            } else {
-                $applicantFolder = $baseFolder->getSubfolder($applicantName);
-            }
-
             foreach ($uploadedFiles['file'] as $uploadedFile) {
-
                 if ($uploadedFile->getError() === UPLOAD_ERR_OK) {
-
+                    // Datei in FAL speichern
                     $file = $storage->addUploadedFile(
                         $uploadedFile,
                         $applicantFolder,
@@ -316,11 +374,35 @@ class JobController extends ActionController
                         DuplicationBehavior::RENAME
                     );
 
-                    $savedFiles[] = $file->getForLocalProcessing(false);
+                    // FAL FileReference erzeugen
+                    $fileReference = GeneralUtility::makeInstance(CoreFileReference::class, [
+                        'uid_local' => $file->getUid(),
+                        'uid_foreign' => 0,
+                        'tablenames' => '',
+                        'fieldname' => '',
+                        'pid' => $file->getStorage()->getUid(),
+                        'table_local' => 'sys_file',
+                    ]);
+
+                    $savedFileReferences[] = $fileReference;
                 }
             }
         }
 
-        return $savedFiles;
+        return $savedFileReferences;
+    }
+
+
+
+    public function successAction(\Lanius\Jobman\Domain\Model\Job $job): ResponseInterface
+    {
+        $language = $this->request->getAttribute('language');
+        /** @var Locale $locale */
+        $locale = $language->getLocale();
+        $languageKey = $locale->getLanguageCode();
+
+        $this->titleProvider->setTitle(\TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate('success_title', 'jobman', [], $languageKey));
+
+        return $this->htmlResponse();
     }
 }

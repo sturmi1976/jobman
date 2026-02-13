@@ -83,11 +83,45 @@
             <trans-unit id="applicationFrom">
                 <source>Bewerbung von</source>
             </trans-unit>
-            <trans-unit id="message">
+            <trans-unit id="message_label">
                 <source>Message: </source>
             </trans-unit>
             <trans-unit id="subject_label">
                 <source>Application to:</source>
+            </trans-unit>
+            <trans-unit id="success_title">
+                <source>Application sent</source>
+            </trans-unit>
+            <trans-unit id="success_headline">
+                <source>Application successfully submitted</source>
+            </trans-unit>
+            <trans-unit id="success_text">
+                <source><![CDATA[Thank you for your application. We have received your documents and will review them carefully.<br>
+            Our team will get back to you as soon as possible.]]></source>
+            </trans-unit>
+            <trans-unit id="success_linktext">
+                <source>Back to overview</source>
+            </trans-unit>
+            <trans-unit id="fullname">
+                <source>Full Name</source>
+            </trans-unit>
+            <trans-unit id="email_address">
+                <source>Email Address</source>
+            </trans-unit>
+            <trans-unit id="message">
+                <source>Message</source>
+            </trans-unit>
+            <trans-unit id="upload_label">
+                <source>Upload Documents</source>
+            </trans-unit>
+            <trans-unit id="upload_sublabel">
+                <source>Uploading documents is possible here, including multiple selection.</source>
+            </trans-unit>
+            <trans-unit id="allowed_formats_label">
+                <source>Allowed formats</source>
+            </trans-unit>
+            <trans-unit id="submit_text">
+                <source>Submit Application</source>
             </trans-unit>
 
     </body>

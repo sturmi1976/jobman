@@ -349,7 +349,7 @@ class JobController extends ActionController
 
         /** @var StorageRepository $storageRepository */
         $storageRepository = GeneralUtility::makeInstance(StorageRepository::class);
-        $storage = $storageRepository->findByUid(1); // FAL Storage UID
+        $storage = $storageRepository->findByUid((int)$this->settings['applicationStorage']); // FAL Storage UID
 
         $baseFolderName = 'bewerbungen';
         $baseFolder = $storage->hasFolder($baseFolderName)

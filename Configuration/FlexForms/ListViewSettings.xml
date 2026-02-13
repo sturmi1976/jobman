@@ -68,6 +68,24 @@
                         </config>
                     </settings.accordionType>
 
+                    <settings.applicationStorage>
+    <label>File Storage für Bewerbungsdokumente</label>
+    <description>Tipp: Erstelle ein neues File Storage außerhalb vom public-Ordner (z.B. ../applications/), wo Bewerbungsdokumente gespeichert werden, damit sie über den Browser nicht aufgerufen werden können.</description>
+    <config>
+        <type>select</type>
+        <renderType>selectSingle</renderType>
+        <foreign_table>sys_file_storage</foreign_table>
+        <foreign_table_where>
+    AND sys_file_storage.deleted = 0
+    AND sys_file_storage.is_online = 1
+    ORDER BY sys_file_storage.name
+</foreign_table_where>
+        <minitems>1</minitems>
+        <maxitems>1</maxitems>
+        <default>0</default>
+    </config>
+</settings.applicationStorage>
+
 
 
                     <settings.detailButton>

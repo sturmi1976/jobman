@@ -1,13 +1,84 @@
 <f:layout name="Application" />
 
 <f:section name="Subject">
-    {subject_label}: {job.title}
+    {subject_label} {job.title}
 </f:section>
 
 <f:section name="Main">
 
-    <h1>{applicationFrom}: {name}</h1>
-    <p>
+    
+    
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Application Confirmation</title>
+  <style>
+    /* Allgemeine Styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      color: #333333;
+    }
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      background-color: #ffffff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+    }
+    .content {
+      padding: 20px;
+      line-height: 1.6;
+    }
+    .content h1 {
+      color: #4CAF50;
+    }
+    .button {
+      display: inline-block;
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+    .footer {
+      font-size: 12px;
+      text-align: center;
+      color: #777777;
+      padding: 15px;
+    }
+
+    /* Responsive */
+    @media only screen and (max-width: 600px) {
+      .container {
+        width: 90% !important;
+      }
+    }
+  </style>
+
+    <body>
+  <div class="container">
+    <div class="header">
+      <h1>{applicationFrom}:<br />{name}</h1>
+    </div>
+    <div class="content">
+      <h1>{applicationFrom}:<br />{name}</h1>
+      <p>
         Name: {name}<br />
         E-Mail: {email}<br /> 
 
@@ -16,4 +87,12 @@
         <f:format.raw>{message}</f:format.raw>
         </f:if>
     </p>
+    </div>
+    <div class="footer">
+      &copy; <f:format.date format="Y">now</f:format.date> Your Company Name. All rights reserved.
+    </div>
+  </div>
+</body>
+</head>
+</html>
 </f:section>  

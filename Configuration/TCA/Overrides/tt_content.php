@@ -35,3 +35,18 @@ $pluginKey = ExtensionUtility::registerPlugin(
     'Beschreibung für die Jobextension.',                // Plugin description (optional)
     'FILE:EXT:jobman/Configuration/FlexForms/ListViewSettings.xml',
 );
+
+
+
+ExtensionManagementUtility::addToAllTCAtypes(
+    'tt_content',
+    '--div--;Configuration,pi_flexform,',
+    $pluginKey,
+    'after:subheader',
+);
+
+ExtensionManagementUtility::addPiFlexFormValue(
+    '',
+    'FILE:EXT:jobman/Configuration/FlexForms/ListViewSettings.xml',
+    $pluginKey,
+);

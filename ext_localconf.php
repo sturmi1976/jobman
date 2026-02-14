@@ -16,5 +16,9 @@ ExtensionUtility::configurePlugin(
     ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT,
 );
 
+// Email Template and Layout path
 $GLOBALS['TYPO3_CONF_VARS']['MAIL']['templateRootPaths'][700] = 'EXT:jobman/Resources/Private/Templates/Email';
 $GLOBALS['TYPO3_CONF_VARS']['MAIL']['layoutRootPaths'][700] = 'EXT:jobman/Resources/Private/Layouts/Email';
+
+//CSS for backend
+$GLOBALS['TYPO3_CONF_VARS']['BE']['stylesheets']['jobman'] = 'EXT:jobman/Resources/Public/Css/backend.css';

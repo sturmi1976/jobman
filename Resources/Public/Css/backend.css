@@ -1,0 +1,33 @@
+/* Nur die Job Manager Kategorie */
+button[data-modulemenu-identifier="jobman"] {
+    background: #1e293b;
+    color: #ffffff;
+    border-radius: 6px;
+}
+
+button[data-modulemenu-identifier="jobman"]:hover {
+    background: #334155;
+}
+
+
+a[data-modulemenu-identifier="jobman_dashboard"] {
+    background: #0f172a;
+    color: #cbd5e1;
+    border-radius: 4px;
+    margin: 2px 6px;
+}
+
+a[data-modulemenu-identifier="jobman_dashboard"]:hover {
+    background: #1e293b;
+    color: #ffffff;
+}
+
+
+[data-modulemenu-identifier="jobman"] .modulemenu-icon svg rect:first-child {
+    fill: #c4002f;
+}
+
+.modulemenu-group[data-modulemenu-level="1"]
+button[data-modulemenu-identifier="jobman"] {
+    background: linear-gradient(135deg, #0ea5e9, #6366f1);
+}

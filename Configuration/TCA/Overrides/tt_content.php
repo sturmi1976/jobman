@@ -32,7 +32,7 @@ $pluginKey = ExtensionUtility::registerPlugin(
     'Job List',        // Plugin-Name im BE
     'jobman-plugin-joblist', // Icon (optional)
     'Jobman',                // Plugin type (leer lassen)
-    'Beschreibung für die Jobextension.',                // Plugin description (optional)
+    'Job listings with Google for Jobs microdata and tt_address support, featuring flexible display options such as accordions, tiles, and detailed job views.',                // Plugin description (optional)
     'FILE:EXT:jobman/Configuration/FlexForms/ListViewSettings.xml',
 );
 

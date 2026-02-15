@@ -39,13 +39,13 @@ return [
             'config' => [
                 'type' => 'slug',
                 'generatorOptions' => [
-                    'fields' => ['title'],  // Felder, aus denen der Slug erstellt wird
+                    'fields' => ['title'],
                     'replacements' => [
-                        '/' => '-',           // optional: Ersatz von Zeichen
+                        '/' => '-',
                     ],
                 ],
-                'fallbackCharacter' => '-', // Zeichen für ungültige Zeichen
-                'eval' => 'uniqueInSite',   // stellt eindeutigen Slug pro Site sicher
+                'fallbackCharacter' => '-',
+                'eval' => 'uniqueInSite',
             ],
         ],
         'location' => ['label' => 'LLL:EXT:jobman/Resources/Private/Language/locallang_db.xlf:tx_jobman_domain_model_job.location', 'config' => ['type' => 'input']],
@@ -128,7 +128,6 @@ return [
             'displayCond' => 'FIELD:button_type:=:link',
             'config' => [
                 'type' => 'input',
-                //'renderType' => 'inputLink',
                 'eval' => 'trim',
             ],
         ],
@@ -278,8 +277,8 @@ description, salary,
 address_mode, address_tt, address_manual,
 --div--;Structured Data,
 sd_company, sd_street, sd_postalcode, sd_city, sd_region, sd_country, valid_through,
---div--;core.form.tabs:language,--palette--;;paletteLanguage,
---div--;core.form.tabs:access,hidden,--palette--;;paletteTimes,
+--div--;Language,--palette--;;paletteLanguage,
+--div--;Access,hidden,--palette--;;paletteTimes,
 ',
         ],
     ],

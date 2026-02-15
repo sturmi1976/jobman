@@ -21,4 +21,5 @@ $GLOBALS['TYPO3_CONF_VARS']['MAIL']['templateRootPaths'][700] = 'EXT:jobman/Reso
 $GLOBALS['TYPO3_CONF_VARS']['MAIL']['layoutRootPaths'][700] = 'EXT:jobman/Resources/Private/Layouts/Email';
 
 //CSS for backend
-$GLOBALS['TYPO3_CONF_VARS']['BE']['stylesheets']['jobman'] = 'EXT:jobman/Resources/Public/Css/backend.css';
+$GLOBALS['TYPO3_CONF_VARS']['BE']['stylesheets']['jobman_general'] = 'EXT:jobman/Resources/Public/Css/backend.css';
+$GLOBALS['TYPO3_CONF_VARS']['BE']['stylesheets']['jobman_dashboard'] = 'EXT:jobman/Resources/Public/Css/dashboard.css';

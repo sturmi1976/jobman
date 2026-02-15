@@ -1,0 +1,69 @@
+<f:layout name="Backend/Default" />
+
+<f:section name="Content">
+
+    <f:render partial="Backend/Css/Dashboard" />
+
+    <div class="jobman-dashboard">
+
+        <h1>Job Manager Dashboard</h1>
+
+        <div class="dashboard-grid">
+
+            <!-- Aktive Jobs -->
+            <div class="dashboard-card">
+                <div class="card-icon">📄</div>
+                <div class="card-content">
+                    <div class="card-number">
+                        {activeJobs}
+                    </div>
+                    <div class="card-label">
+                        Aktive Jobs
+                    </div>
+                </div>
+            </div>
+
+            <!-- Abgelaufene Jobs -->
+            <div class="dashboard-card">
+                <div class="card-icon">⏳</div>
+                <div class="card-content">
+                    <div class="card-number">
+                        {expiredJobs}
+                    </div>
+                    <div class="card-label">
+                        Abgelaufene Jobs
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bewerbungen gesamt -->
+            <div class="dashboard-card">
+                <div class="card-icon">📬</div>
+                <div class="card-content">
+                    <div class="card-number">
+                        {applicationsTotal}
+                    </div>
+                    <div class="card-label">
+                        Bewerbungen gesamt
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bewerbungen letzte 30 Tage -->
+            <div class="dashboard-card">
+                <div class="card-icon">🆕</div>
+                <div class="card-content">
+                    <div class="card-number">
+                        {applicationsLast30Days}
+                    </div>
+                    <div class="card-label">
+                        Bewerbungen letzte 30 Tage
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</f:section>

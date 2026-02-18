@@ -29,4 +29,5 @@ Install the extension using Composer:
 1. Log in to the TYPO3 backend
 2. Go to Admin Tools → Extensions
 3. Activate the extension Job Manager
-4. Run the database updates via the Upgrade Wizard if required
+4. Add the extension to the Site Settings to enable site-specific configuration
+5. Run the database updates via the Upgrade Wizard if required

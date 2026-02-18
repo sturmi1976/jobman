@@ -23,3 +23,4 @@ With this Job Manager extension, you can easily publish job listings on your web
 ## Installation via Composer (recommended)
 Install the extension using Composer:
 `composer require lanius/jobman`
+

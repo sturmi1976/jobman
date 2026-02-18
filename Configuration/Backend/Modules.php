@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Lanius\Jobman\Controller\DashboardModuleController;
+use Lanius\Jobman\Controller\Backend\JobsController;
 
 return [
 
@@ -15,7 +16,6 @@ return [
         ],
     ],
 
-    // 🔹 Dashboard Modul darunter
     'jobman_dashboard' => [
         'parent' => 'jobman',
         'access' => 'user',
@@ -26,11 +26,30 @@ return [
         ],
         'extensionName' => 'Jobman',
         'iconIdentifier' => 'jobman-plugin-joblist',
-        'js' => 'EXT:jobman/Resources/Public/JavaScript/dashboard.js',
         'controllerActions' => [
             DashboardModuleController::class => [
                 'index',
             ],
         ],
     ],
+
+    'jobman_jobs' => [
+        'parent' => 'jobman',
+        'access' => 'user',
+        'workspaces' => 'live',
+        'path' => '/module/jobman/jobs',
+        'labels' => [
+            'title' => 'Jobs',
+        ],
+        'extensionName' => 'Jobman',
+        'iconIdentifier' => 'jobman-plugin-joblist',
+        'controllerActions' => [
+            JobsController::class => [
+                'index',
+            ],
+        ],
+        // 🔹 Neu: Seitenbaum aktivieren
+        'navigationComponent' => '@typo3/backend/tree/page-tree-element',
+    ],
+
 ];

@@ -14,4 +14,7 @@ services:
   Lanius\Jobman\Controller\DashboardModuleController:
     autowire: true
     public: true
+  Lanius\Jobman\Controller\Backend\JobsController:
+    autowire: true
+    public: true
 

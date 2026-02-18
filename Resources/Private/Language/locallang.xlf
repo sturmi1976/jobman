@@ -9,119 +9,156 @@
 
       <trans-unit id="job.location">
         <source>Location</source>
+        <target>Ort</target>
       </trans-unit>
 
       <trans-unit id="job.salary">
         <source>Salary</source>
+        <target>Gehalt</target>
       </trans-unit>
 
       <trans-unit id="job.employmentType">
         <source>Employment type</source>
+        <target>Anstellungsart</target>
       </trans-unit>
 
       <trans-unit id="job.remote">
         <source>Remote possible</source>
+        <target>Remote möglich</target>
       </trans-unit>
 
       <trans-unit id="job.description">
         <source>Description</source>
+        <target>Vollständige Beschreibung</target>
       </trans-unit>
       <trans-unit id="job.showJob">
         <source>Show</source>
+        <target>Stelle anzeigen</target>
       </trans-unit>
       <trans-unit id="job.backToList">
         <source>Back</source>
+        <target>Zurück zur Übersicht</target>
       </trans-unit>
       <trans-unit id="job.contractor">
         <source>Freelancing</source>
+        <target>Freelancer</target>
       </trans-unit>
       <trans-unit id="job.fulltime">
         <source>Full time</source>
+        <target>Vollzeit</target>
       </trans-unit>
       <trans-unit id="job.parttime">
         <source>Part time</source>
+        <target>Teilzeit</target>
       </trans-unit>
       <trans-unit id="job.temporary">
         <source>Temporary</source>
+        <target>Zeitlich befristet / Aushilfe</target>
       </trans-unit>
       <trans-unit id="job.intern">
         <source>Internship</source>
+        <target>Praktikum</target>
       </trans-unit>
       <trans-unit id="job.volunteer">
         <source>Voluntarily</source>
+        <target>Ehrenamtlich</target>
       </trans-unit>
       <trans-unit id="job.per_diem">
         <source>Temporary help</source>
+        <target>Aushilfe</target>
       </trans-unit>
       <trans-unit id="job.contact">
         <source>Contact</source>
+        <target>Kontact</target>
       </trans-unit>
       <trans-unit id="job.showDetail">
         <source>Details</source>
+        <target>Stellenangebot zeigen</target>
       </trans-unit>
       <trans-unit id="job.jobHeadline">
         <source>Job description</source>
+        <target>Stellenbeschreibung</target>
       </trans-unit>
       <trans-unit id="job.remoteType.hybrid">
                 <source>Hybrid (on-site and remote)</source>
+                <target>Hybrid (Büro &amp; Remote)</target>
             </trans-unit>
 
             <trans-unit id="job.remoteType.full_remote">
                 <source>Fully remote</source>
+                <target>Vollständig Remote</target>
             </trans-unit>
 
             <trans-unit id="job.remoteType.remote_eu">
                 <source>Remote within Europe</source>
+                <target>Remote innerhalb Europas</target>
             </trans-unit>
 
             <trans-unit id="job.remoteType.remote_world">
                 <source>Remote worldwide</source>
+                <target>Weltweit Remote</target>
             </trans-unit>
             <trans-unit id="mailSubject">
-                <source>Bewerbung zu: </source>
+                <source>Application to: </source>
+                <target>Bewerbung zu: </target>
             </trans-unit>
             <trans-unit id="applicationFrom">
-                <source>Bewerbung von</source>
+                <source>Application from</source>
+                <target>Bewerbung von</target>
             </trans-unit>
             <trans-unit id="message_label">
                 <source>Message: </source>
+                <target>Nachricht: </target>
             </trans-unit>
             <trans-unit id="subject_label">
                 <source>Application to:</source>
+                <target>Bewerbung zu:</target>
             </trans-unit>
             <trans-unit id="success_title">
                 <source>Application sent</source>
+                <target>Bewerbung versendet</target>
             </trans-unit>
             <trans-unit id="success_headline">
                 <source>Application successfully submitted</source>
+                <target>Bewerbung erfolgreich eingereicht</target>
             </trans-unit>
             <trans-unit id="success_text">
                 <source><![CDATA[Thank you for your application. We have received your documents and will review them carefully.<br>
             Our team will get back to you as soon as possible.]]></source>
+                <target><![CDATA[Vielen Dank für Ihre Bewerbung.<br>Wir haben Ihre Unterlagen erhalten und werden sie sorgfältig prüfen.<br>
+Unser Team meldet sich schnellstmöglich bei Ihnen.]]></target>
             </trans-unit>
             <trans-unit id="success_linktext">
                 <source>Back to overview</source>
+                <target>Zurück zur Übersicht</target>
             </trans-unit>
             <trans-unit id="fullname">
                 <source>Full Name</source>
+                <target>Vor- und Nachname</target>
             </trans-unit>
             <trans-unit id="email_address">
                 <source>Email Address</source>
+                <target>E-Mail Adresse</target>
             </trans-unit>
             <trans-unit id="message">
                 <source>Message</source>
+                <target>Nachricht</target>
             </trans-unit>
             <trans-unit id="upload_label">
                 <source>Upload Documents</source>
+                <target>Dokumente hochladen</target>
             </trans-unit>
             <trans-unit id="upload_sublabel">
                 <source>Uploading documents is possible here, including multiple selection.</source>
+                <target>Das Hochladen von Dokumenten ist hier möglich, einschließlich der Mehrfachauswahl. (Lebenslauf, Zeugnisse, etc.)</target>
             </trans-unit>
             <trans-unit id="allowed_formats_label">
                 <source>Allowed formats</source>
+                <target>Erlaubte Formate</target>
             </trans-unit>
             <trans-unit id="submit_text">
                 <source>Submit Application</source>
+                <target>Bewerbung absenden</target>
             </trans-unit>
 
     </body>

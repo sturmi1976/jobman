@@ -106,6 +106,7 @@
         </f:if>
         
         <f:if condition="{contactAddress}">
+            <div class="jobman_contactbox">
             <h3>
                 <f:translate
                 key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.contact"
@@ -136,6 +137,7 @@
                     <f:format.raw>{contactAddress.html}</f:format.raw>
                 </f:else>
             </f:if>
+            </div>
         </f:if>
 
         <!-- Button -->

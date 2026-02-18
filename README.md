@@ -24,3 +24,12 @@ With this Job Manager extension, you can easily publish job listings on your web
 Install the extension using Composer:
 `composer require lanius/jobman`
 
+### After installation:
+
+Log in to the TYPO3 backend
+
+Go to Admin Tools → Extensions
+
+Activate the extension Job Manager
+
+Run the database updates via the Upgrade Wizard if required

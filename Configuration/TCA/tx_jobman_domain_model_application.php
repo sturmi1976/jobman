@@ -10,7 +10,7 @@ return [
         'enablecolumns' => [
             'disabled' => 'hidden',
         ],
-        'searchFields' => 'name,email,message',
+        'searchFields' => 'name,email,message,status',
         'iconfile' => 'EXT:jobman/Resources/Public/Icons/job.svg',
     ],
     'types' => [
@@ -18,6 +18,7 @@ return [
             'showitem' => '
                 hidden,
                 job, name, email, message,
+                --div--;Status, status,
                 --div--;Files, files
             '
         ],
@@ -25,6 +26,7 @@ return [
     'columns' => [
 
         'hidden' => [
+            'label' => 'Verstecken',
             'config' => ['type' => 'check']
         ],
 
@@ -60,6 +62,24 @@ return [
                 'type' => 'text',
             ],
         ],
+
+        'status' => [
+            'exclude' => true,
+            'label' => 'status',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    ['Neu', 0],
+                    ['In Prüfung', 1],
+                    ['Interview', 2],
+                    ['Angenommen', 3],
+                    ['Abgelehnt', 4],
+                ],
+                'default' => 0,
+            ],
+        ],
+
 
         'files' => [
             'label' => 'Attachments',

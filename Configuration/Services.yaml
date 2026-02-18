@@ -10,3 +10,8 @@ services:
     autoconfigure: true
     tags:
       - { name: 'core.pageTitleProvider', identifier: 'jobman' }
+
+  Lanius\Jobman\Controller\DashboardModuleController:
+    autowire: true
+    public: true
+

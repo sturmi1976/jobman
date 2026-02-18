@@ -57,3 +57,7 @@ CREATE TABLE tx_jobman_domain_model_application (
     KEY parent (pid)
 );
 
+
+CREATE TABLE tx_jobman_domain_model_application (
+    status int(11) DEFAULT '0' NOT NULL
+);

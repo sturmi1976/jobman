@@ -1,0 +1,49 @@
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+    const months = JSON.parse(document.body.dataset.months);
+    const counts = JSON.parse(document.body.dataset.counts);
+    const statusLabels = JSON.parse(document.body.dataset.statuslabels);
+    const statusCounts = JSON.parse(document.body.dataset.statuscounts);
+
+    // Linienchart
+    new Chart(document.getElementById('applicationsChart'), {
+        type: 'line',
+        data: {
+            labels: months,
+            datasets: [{
+                label: 'Bewerbungen',
+                data: counts,
+                borderWidth: 2,
+                tension: 0.3
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: false }
+            }
+        }
+    });
+
+    // Donut Chart
+    new Chart(document.getElementById('statusChart'), {
+        type: 'doughnut',
+        data: {
+            labels: statusLabels,
+            datasets: [{
+                data: statusCounts
+            }]
+        },
+        options: {
+            responsive: true
+        }
+    });
+
+});
+
+
+
+
+
+</script>

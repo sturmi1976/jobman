@@ -26,6 +26,7 @@ return [
         ],
         'extensionName' => 'Jobman',
         'iconIdentifier' => 'jobman-plugin-joblist',
+        'js' => 'EXT:jobman/Resources/Public/JavaScript/dashboard.js',
         'controllerActions' => [
             DashboardModuleController::class => [
                 'index',

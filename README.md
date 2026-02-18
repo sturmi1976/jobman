@@ -17,3 +17,8 @@ With this Job Manager extension, you can easily publish job listings on your web
 - TYPO3 13 LTS & 14 LTS compatible
 
 - Composer & Classic installation supported
+
+##Installation
+
+# Installation via Composer (recommended)
+Install the extension using Composer:

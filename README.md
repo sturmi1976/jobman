@@ -18,7 +18,7 @@ With this Job Manager extension, you can easily publish job listings on your web
 
 - Composer & Classic installation supported
 
-##Installation
+## Installation
 
 # Installation via Composer (recommended)
 Install the extension using Composer:

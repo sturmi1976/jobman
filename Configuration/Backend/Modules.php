@@ -32,7 +32,7 @@ return [
             ],
         ],
     ],
-
+    /*
     'jobman_jobs' => [
         'parent' => 'jobman',
         'access' => 'user',
@@ -51,5 +51,5 @@ return [
         // 🔹 Neu: Seitenbaum aktivieren
         'navigationComponent' => '@typo3/backend/tree/page-tree-element',
     ],
-
+*/
 ];

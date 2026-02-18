@@ -148,12 +148,14 @@
                     uri="{job.externLink}"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="btn btn-primary">
-                    Jetzt bewerben
+                    class="apply_link">
+                    <f:translate
+                key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:apply_now"
+                languageKey="{job:languageKey()}" />
                 </f:link.external>
                 <f:else>
-                    <f:link.action action="application" class="btn btn-primary" rel="noopener noreferrer" additionalAttributes="{data-job: job.uid}" arguments="{job: job.uid}">
-                        Jetzt bewerben
+                    <f:link.action action="application" class="apply_link" rel="noopener noreferrer" additionalAttributes="{data-job: job.uid}" arguments="{job: job.uid}">
+
                         <f:translate
                 key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:apply_now"
                 languageKey="{job:languageKey()}" />

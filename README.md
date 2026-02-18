@@ -2,7 +2,7 @@
 
 With this Job Manager extension, you can easily publish job listings on your website. Interested candidates and applicants have the opportunity to apply directly via an application form, including file attachments.
 
-# Features
+## Features
 
 - Job listings with structured data (Google for Jobs compatible)
 
@@ -18,7 +18,8 @@ With this Job Manager extension, you can easily publish job listings on your web
 
 - Composer & Classic installation supported
 
-## Installation
+# Installation
 
-# Installation via Composer (recommended)
+## Installation via Composer (recommended)
 Install the extension using Composer:
+`composer require lanius/jobman`

@@ -160,6 +160,10 @@ Unser Team meldet sich schnellstmöglich bei Ihnen.]]></target>
                 <source>Submit Application</source>
                 <target>Bewerbung absenden</target>
             </trans-unit>
+            <trans-unit id="apply_now">
+                <source>Apply now</source>
+                <target>Jetzt bewerben</target>
+            </trans-unit>
 
     </body>
   </file>

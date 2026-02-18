@@ -121,6 +121,9 @@ Unser Team meldet sich schnellstmöglich bei Ihnen.]]></source>
             <trans-unit id="submit_text">
                 <source>Bewerbung absenden</source>
             </trans-unit>
+            <trans-unit id="apply_now">
+                <source>Jetzt bewerben</source>
+            </trans-unit>
 
     </body>
   </file>

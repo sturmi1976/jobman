@@ -154,6 +154,9 @@
                 <f:else>
                     <f:link.action action="application" class="btn btn-primary" rel="noopener noreferrer" additionalAttributes="{data-job: job.uid}" arguments="{job: job.uid}">
                         Jetzt bewerben
+                        <f:translate
+                key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:apply_now"
+                languageKey="{job:languageKey()}" />
                     </f:link.action>
                 </f:else>
             </f:if>

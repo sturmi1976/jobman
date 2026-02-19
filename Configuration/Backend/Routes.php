@@ -1,8 +1,10 @@
 <?php
 
+use TYPO3\CMS\Backend\Controller;
+
 return [
-    'tx_blogext_blog_backend' => [
-        'path' => '/jobman/jobman/backend',
-        'target' => 'Lanius\\Jobman\\Backend\\Controller\\DashboardModuleController::index',
+    'jobman_all_jobs' => [
+        'path' => '/jobman/jobs/all',
+        'target' => \Lanius\Jobman\Controller\Backend\JobsController::class . '::allJobsAction',
     ],
 ];

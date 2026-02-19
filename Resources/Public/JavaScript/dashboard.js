@@ -39,7 +39,7 @@
             data: {
                 labels: ["Neu", "In Prüfung", "Interview", "Abgelehnt", "Angenommen"],
                 datasets: [{
-                    label: "Population (millions)",
+                    label: "Anzahl",
                     data: statusCounts
                 }]
             },

@@ -1,1 +1,31 @@
-<f:debug>{_all}</f:debug>
+
+
+<div class="wrapper_joblist">
+    <f:if condition="{no_page_selected}">
+        <f:then>
+            <div class="no_page_selected">
+                <p>
+                    Bitte einen Ordner auswählen!<br />
+                    <em>Stellenangebote müssen in einem Ordner gespeichert werden.</em>
+                </p>
+            </div>
+        </f:then>
+        <f:else>
+            <div class="header">
+                <div class="link_new_create">
+                    <a href="{createLink}">Neues Stellenangebot</a>
+                </div>
+                <div class="navigation">
+                    <div class="link dashboard">
+                        <a href="{dashboardLink}">Zum Dashboard</a>
+                    </div>
+                    <div class="link allJobs">
+                        <f:link.action action="allJobs">Jobs verwalten</f:link.action>
+                    </div>
+                    
+                </div>
+            </div>
+        </f:else>
+    </f:if>
+</div>
+

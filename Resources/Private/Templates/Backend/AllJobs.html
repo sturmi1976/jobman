@@ -1,0 +1,60 @@
+
+
+<div class="wrapper_joblist">
+    <div class="backlink">
+        <f:link.action action="index">Zurück</f:link.action>
+    </div>
+
+    <f:if condition="{no_page_selected}">
+        <f:then>
+            <div class="no_page_selected">
+                    <p>
+                        Bitte einen Ordner auswählen!<br />
+                        <em>Zum Anzeigen von Stellenangebote auf einen Ordner klicken,<br>wo sich welche befinden.</em>
+                    </p>
+                </div>
+        </f:then>
+        <f:else>
+            <div class="job-list">
+    <h2>Alle Jobs</h2>
+
+    <f:if condition="{jobs}">
+        <f:then>
+        <ul class="job-list__items">
+            <f:for each="{jobs}" as="job" iteration="i">
+
+                <li class="job-list__item">
+                    <div class="job-list__info">
+                        <span class="job-list__title">{job.job.title}</span>
+                        <span class="job-list__meta">
+                            {job.job.location}
+                        </span>
+                    </div>
+                    <div class="job-list__actions">
+                        <!-- Edit -->
+                        <a class="job-list__edit" href="{job.editLink}" title="Bearbeiten">
+                            ✏️
+                        </a>
+                        <!-- Delete -->
+                        <a href="{job.deleteLink}"
+                            class="job-list__delete"
+                            title="Löschen"
+                            > 
+                                ❌
+                            </a>
+                    </div>
+                </li>
+            </f:for>
+        </ul>
+        </f:then>
+    <f:else>
+        <p>Keine Jobs gefunden.</p>
+    </f:else>
+    </f:if>
+</div>
+
+        </f:else>
+    </f:if>
+
+
+</div>

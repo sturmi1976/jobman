@@ -16,6 +16,20 @@ class Application extends AbstractEntity
 
     protected ?Job $job = null;
 
+    protected string $status = 'new';
+
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): void
+    {
+        $this->status = $status;
+    }
+
+
+
     /**
      * @var ObjectStorage<FileReference>
      */

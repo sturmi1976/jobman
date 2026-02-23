@@ -2,21 +2,26 @@
 
 <div class="wrapper_joblist">
     <div class="backlink">
-        <f:link.action action="index">Zurück</f:link.action>
+        <f:link.action action="index">
+            <f:translate key="LLL:EXT:jobman/Resources/Private/Language/locallang_db.xlf:back_text" />
+        </f:link.action>
     </div>
 
     <f:if condition="{no_page_selected}">
         <f:then>
             <div class="no_page_selected">
                     <p>
-                        Bitte einen Ordner auswählen!<br />
-                        <em>Zum Anzeigen von Stellenangebote auf einen Ordner klicken,<br>wo sich welche befinden.</em>
+                        <f:sanitize.html>
+                            <f:translate key="LLL:EXT:jobman/Resources/Private/Language/locallang_db.xlf:no_page_selected" />
+                        </f:sanitize.html>
                     </p>
                 </div>
         </f:then>
         <f:else>
             <div class="job-list">
-    <h2>Alle Jobs</h2>
+    <h2>
+        <f:translate key="LLL:EXT:jobman/Resources/Private/Language/locallang_db.xlf:all_jobs_headline" />
+    </h2>
 
     <f:if condition="{jobs}">
         <f:then>
@@ -29,6 +34,11 @@
                         <span class="job-list__meta">
                             {job.job.location}
                         </span>
+                        <span class="job-list__viewCount">
+                            <f:if condition="{job.viewCount} > 0">
+                                <core:icon identifier="actions-view" size="small" title="Aufrufe im Frontend" /> {job.viewCount}
+                            </f:if>
+                        </span>
                     </div>
                     <div class="job-list__actions">
                         <!-- Edit -->
@@ -36,12 +46,28 @@
                             ✏️
                         </a>
                         <!-- Delete -->
-                        <a href="{job.deleteLink}"
-                            class="job-list__delete"
-                            title="Löschen"
-                            > 
+                        <a href="{job.deleteLink}" class="js-open-delete-modal" data-url="{job.deleteLink}"> 
                                 ❌
                             </a>
+
+<div class="custom-modal" id="deleteModal">
+    <div class="custom-modal__overlay"></div>
+
+    <div class="custom-modal__box">
+        <h3><f:translate key="LLL:EXT:jobman/Resources/Private/Language/locallang_db.xlf:job_delete_title" /></h3>
+
+        <p>
+            <f:sanitize.html>
+                <f:translate key="LLL:EXT:jobman/Resources/Private/Language/locallang_db.xlf:job_delete_text" />
+            </f:sanitize.html>
+        </p>
+
+        <div class="custom-modal__actions">
+            <button class="js-cancel"><f:translate key="LLL:EXT:jobman/Resources/Private/Language/locallang_db.xlf:job_delete_cancel" /></button>
+            <a href="#" class="js-confirm-delete"><f:translate key="LLL:EXT:jobman/Resources/Private/Language/locallang_db.xlf:job_delete_confirm" /></a>
+        </div>
+    </div>
+</div>
                     </div>
                 </li>
             </f:for>

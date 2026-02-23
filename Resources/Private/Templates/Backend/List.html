@@ -5,22 +5,35 @@
         <f:then>
             <div class="no_page_selected">
                 <p>
-                    Bitte einen Ordner auswählen!<br />
-                    <em>Stellenangebote müssen in einem Ordner gespeichert werden.</em>
+                    <f:sanitize.html>
+                        <f:translate key="LLL:EXT:jobman/Resources/Private/Language/locallang_db.xlf:no_page_selected" />
+                    </f:sanitize.html>
                 </p>
             </div>
         </f:then>
         <f:else>
             <div class="header">
                 <div class="link_new_create">
-                    <a href="{createLink}">Neues Stellenangebot</a>
+                    <a href="{createLink}">
+                        <f:translate key="LLL:EXT:jobman/Resources/Private/Language/locallang_db.xlf:new_job" />
+                    </a>
                 </div>
                 <div class="navigation">
                     <div class="link dashboard">
-                        <a href="{dashboardLink}">Zum Dashboard</a>
+                        <a href="{dashboardLink}">
+                            <f:translate key="LLL:EXT:jobman/Resources/Private/Language/locallang_db.xlf:dashboard" />
+                        </a>
                     </div>
                     <div class="link allJobs">
-                        <f:link.action action="allJobs">Jobs verwalten</f:link.action>
+                        <f:link.action action="allJobs">
+                            <f:translate key="LLL:EXT:jobman/Resources/Private/Language/locallang_db.xlf:manage_jobs" />
+                        </f:link.action>
+                    </div>
+
+                    <div class="link applications">
+                        <f:link.action action="applications">
+                            <f:translate key="LLL:EXT:jobman/Resources/Private/Language/locallang_db.xlf:applications" />
+                        </f:link.action>
                     </div>
                     
                 </div>

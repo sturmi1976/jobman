@@ -46,7 +46,9 @@ return [
         'controllerActions' => [
             JobsController::class => [
                 'index',
-                'allJobs'
+                'allJobs',
+                'applications',
+                'showApplication',
             ],
         ],
         'navigationComponent' => '@typo3/backend/tree/page-tree-element',

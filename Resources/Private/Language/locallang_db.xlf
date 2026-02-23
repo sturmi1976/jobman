@@ -79,6 +79,90 @@
         <target>Teilzeit</target>
       </trans-unit>
 
+      <trans-unit id="job_delete_title">
+        <source>Delete Job</source>
+      </trans-unit>
+      <trans-unit id="job_delete_text">
+        <source><![CDATA[You are about to delete a job posting.<br>Are you really sure?]]></source>
+      </trans-unit>
+      <trans-unit id="job_delete_cancel">
+        <source>Cancel</source>
+      </trans-unit>
+      <trans-unit id="job_delete_confirm">
+        <source>Delete</source>
+      </trans-unit>
+
+      <trans-unit id="back_text">
+        <source>Back</source>
+      </trans-unit>
+      <trans-unit id="back_text_overview">
+        <source>Back</source>
+      </trans-unit>
+      
+      <trans-unit id="no_page_selected">
+        <source><![CDATA[Please select a folder!<br /><em>Click on a folder to view job postings located there.]]></source>
+      </trans-unit>
+      <trans-unit id="new_job">
+        <source>New Job</source>
+      </trans-unit>
+      <trans-unit id="dashboard">
+        <source>Dashboard</source>
+      </trans-unit>
+      <trans-unit id="manage_jobs">
+        <source>Manage Jobs</source>
+      </trans-unit>
+      <trans-unit id="all_jobs_headline">
+        <source>All Jobs</source>
+      </trans-unit>
+      <trans-unit id="job_manager_headline">
+        <source>Job Manager Dashboard</source>
+      </trans-unit>
+      <trans-unit id="active_jobs">
+        <source>Active Jobs</source>
+      </trans-unit>
+      <trans-unit id="inactive_jobs">
+        <source>Expired Jobs</source>
+      </trans-unit>
+      <trans-unit id="application_count">
+        <source>Total Applications</source>
+      </trans-unit>
+      <trans-unit id="application_30days">
+        <source>Applications in the Last 30 Days</source>
+      </trans-unit>
+      <trans-unit id="application_per_month">
+        <source>Applications per Month</source>
+      </trans-unit>
+      <trans-unit id="status_headline">
+        <source>Status Distribution</source>
+      </trans-unit>
+      <trans-unit id="applications">
+        <source>Applications</source>
+      </trans-unit>
+      <trans-unit id="contact_headline">
+        <source>Contact</source>
+      </trans-unit>
+      <trans-unit id="name">
+        <source>Name</source>
+      </trans-unit>
+      <trans-unit id="email">
+        <source>Email</source>
+      </trans-unit>
+      <trans-unit id="message">
+        <source>Message</source>
+      </trans-unit>
+      <trans-unit id="sorting.crdate">
+    <source>Date</source>
+</trans-unit>
+
+<trans-unit id="sorting.status">
+    <source>Status</source>
+</trans-unit>
+
+<trans-unit id="sorting.name">
+    <source>Name</source>
+</trans-unit>
+
+
     </body>
   </file>
 </xliff>

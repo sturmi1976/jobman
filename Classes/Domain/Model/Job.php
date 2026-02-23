@@ -39,6 +39,21 @@ class Job extends AbstractEntity
     protected string $externLink = '';
     protected string $email = '';
 
+    /**
+ * @var int
+ */
+protected int $viewCount = 0;
+
+public function getViewCount(): int
+{
+    return $this->viewCount;
+}
+
+public function setViewCount(int $viewCount): void
+{
+    $this->viewCount = $viewCount;
+}
+
 
     public function getEmail(): string
     {

@@ -7,7 +7,9 @@
 
     <div class="jobman-dashboard">
 
-        <h1>Job Manager Dashboard</h1>
+        <h1>
+            <f:translate key="LLL:EXT:jobman/Resources/Private/Language/locallang_db.xlf:job_manager_headline" />
+        </h1>
 
         <div class="dashboard-grid">
 
@@ -19,7 +21,7 @@
                         {activeJobs}
                     </div>
                     <div class="card-label">
-                        Aktive Jobs
+                        <f:translate key="LLL:EXT:jobman/Resources/Private/Language/locallang_db.xlf:active_jobs" />
                     </div>
                 </div>
             </div>
@@ -32,7 +34,7 @@
                         {expiredJobs}
                     </div>
                     <div class="card-label">
-                        Abgelaufene Jobs
+                        <f:translate key="LLL:EXT:jobman/Resources/Private/Language/locallang_db.xlf:inactive_jobs" />
                     </div>
                 </div>
             </div>
@@ -45,7 +47,7 @@
                         {applicationsTotal}
                     </div>
                     <div class="card-label">
-                        Bewerbungen gesamt
+                        <f:translate key="LLL:EXT:jobman/Resources/Private/Language/locallang_db.xlf:application_count" />
                     </div>
                 </div>
             </div>
@@ -58,7 +60,7 @@
                         {applicationsLast30Days}
                     </div>
                     <div class="card-label">
-                        Bewerbungen letzte 30 Tage
+                        <f:translate key="LLL:EXT:jobman/Resources/Private/Language/locallang_db.xlf:application_30days" />
                     </div>
                 </div>
             </div>
@@ -79,12 +81,16 @@
 >
      <div class="jobman-charts">
     <div class="chart-card">
-        <h3>Bewerbungen pro Monat</h3>
+        <h3>
+            <f:translate key="LLL:EXT:jobman/Resources/Private/Language/locallang_db.xlf:application_per_month" />
+        </h3>
         <canvas id="applicationsChart"></canvas>
     </div>
 
     <div class="chart-card">
-        <h3>Status Verteilung</h3>
+        <h3>
+            <f:translate key="LLL:EXT:jobman/Resources/Private/Language/locallang_db.xlf:status_headline" />
+        </h3>
         <canvas id="statusChart"></canvas>
     </div>
 </div>

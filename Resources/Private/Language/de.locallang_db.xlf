@@ -68,6 +68,89 @@
         <target>Teilzeit</target>
       </trans-unit>
 
+      <trans-unit id="job_delete_title">
+        <target>Stellenangebot löschen</target>
+      </trans-unit>
+      <trans-unit id="job_delete_text">
+        <target><![CDATA[Du bist im Begriff ein Stellenangebot zu löschen.<br>Bist du dir wirklich sicher?]]></target>
+      </trans-unit>
+      <trans-unit id="job_delete_cancel">
+        <target>Abbrechen</target>
+      </trans-unit>
+      <trans-unit id="job_delete_confirm">
+        <target>Löschen</target>
+      </trans-unit>
+
+      <trans-unit id="back_text">
+        <target>Zurück</target>
+      </trans-unit>
+      <trans-unit id="back_text_overview">
+        <target>Zurück zur Übersicht</target>
+      </trans-unit>
+      <trans-unit id="no_page_selected">
+        <target><![CDATA[Bitte einen Ordner auswählen!<br /><em>Zum Anzeigen von Stellenangebote auf einen Ordner klicken,<br>wo sich welche befinden.</em>]]></target>
+      </trans-unit>
+      <trans-unit id="new_job">
+        <target>Neues Stellenangebot</target>
+      </trans-unit>
+      <trans-unit id="dashboard">
+        <target>Zum Dashboard</target>
+      </trans-unit>
+      <trans-unit id="manage_jobs">
+        <target>Jobs verwalten</target>
+      </trans-unit>
+      <trans-unit id="all_jobs_headline">
+        <target>Alle Stellenangebote</target>
+      </trans-unit>
+      <trans-unit id="job_manager_headline">
+        <target>Job Manager Dashboard</target>
+      </trans-unit>
+      <trans-unit id="active_jobs">
+        <target>Aktive Jobs</target>
+      </trans-unit>
+      <trans-unit id="inactive_jobs">
+        <target>Abgelaufene Jobs</target>
+      </trans-unit>
+      <trans-unit id="application_count">
+        <target>Bewerbungen gesamt</target>
+      </trans-unit>
+      <trans-unit id="application_30days">
+        <target>Bewerbungen letzte 30 Tage</target>
+      </trans-unit>
+      <trans-unit id="application_per_month">
+        <target>Bewerbungen pro Monat</target>
+      </trans-unit>
+      <trans-unit id="status_headline">
+        <target>Status Verteilung</target>
+      </trans-unit>
+      <trans-unit id="applications">
+        <target>Bewerbungen anzeigen</target>
+      </trans-unit>
+      <trans-unit id="contact_headline">
+        <target>Kontakt</target>
+      </trans-unit>
+      <trans-unit id="name">
+        <target>Name</target>
+      </trans-unit>
+      <trans-unit id="email">
+        <target>E-Mail</target>
+      </trans-unit>
+      <trans-unit id="message">
+        <target>Nachricht</target>
+      </trans-unit>
+      <trans-unit id="sorting.crdate">
+    <source>Date</source>
+</trans-unit>
+
+<trans-unit id="sorting.status">
+    <source>Status</source>
+</trans-unit>
+
+<trans-unit id="sorting.name">
+    <source>Name</source>
+</trans-unit>
+
+
     </body>
   </file>
 </xliff>

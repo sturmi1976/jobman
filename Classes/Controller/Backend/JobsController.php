@@ -15,6 +15,9 @@ use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Backend\Routing\UriBuilder;
 
 use Lanius\Jobman\Domain\Repository\JobRepository;
+use Lanius\Jobman\Domain\Repository\ApplicationRepository;
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+
 
 
 final class JobsController extends ActionController
@@ -25,11 +28,13 @@ final class JobsController extends ActionController
     ) {}
 
     protected JobRepository $jobRepository;
+    protected ApplicationRepository $applicationRepository;
 
 
     public function initializeAction(): void
     {
         $this->jobRepository = GeneralUtility::makeInstance(JobRepository::class);
+        $this->applicationRepository = GeneralUtility::makeInstance(ApplicationRepository::class);
     }
 
 
@@ -58,7 +63,7 @@ final class JobsController extends ActionController
 
         $moduleTemplate->assign('createLink', $this->generateNewRecordLink('tx_jobman_domain_model_job', $folderId));
         $moduleTemplate->assign('dashboardLink', $this->generateDashboardLink());
-        $moduleTemplate->assign('allJobsLink', $this->generateAllJobsLink());
+        $moduleTemplate->assign('allJobsLink', $this->generateAllJobsLink($folderId));
 
         return $moduleTemplate->renderResponse('Backend/List');
     }
@@ -100,6 +105,7 @@ final class JobsController extends ActionController
         foreach ($jobs as $job) {
             $jobsWithLinks[] = [
                 'job' => $job,
+                'viewCount' => $this->jobRepository->getViewCountForJob($job),
                 'editLink' => $this->generateEditLink(
                     $job->getUid(),
                     'tx_jobman_domain_model_job'
@@ -114,6 +120,108 @@ final class JobsController extends ActionController
         $moduleTemplate->assign('jobs', $jobsWithLinks);
 
         return $moduleTemplate->renderResponse('Backend/AllJobs');
+    }
+
+
+
+
+    public function applicationsAction(): ResponseInterface
+    {
+        $moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+
+        $assetCollector = GeneralUtility::makeInstance(AssetCollector::class);
+
+        $assetCollector->addStyleSheet(
+            'jobsList',
+            'EXT:jobman/Resources/Public/Css/Backend/Jobs-list.css'
+        );
+
+        $assetCollector->addStyleSheet(
+            'applications',
+            'EXT:jobman/Resources/Public/Css/Backend/Jobs-applications.css'
+        );
+
+        // =============================
+        // Sorting Logic
+        // =============================
+
+        $orderField = $this->request->hasArgument('order')
+            ? $this->request->getArgument('order')
+            : 'crdate';
+
+        $direction = $this->request->hasArgument('direction')
+            ? strtoupper($this->request->getArgument('direction'))
+            : 'DESC';
+
+        $allowedFields = ['crdate', 'status', 'name'];
+
+        if (!in_array($orderField, $allowedFields, true)) {
+            $orderField = 'crdate';
+        }
+
+        $query = $this->applicationRepository->createQuery();
+
+        $query->setOrderings([
+            $orderField => $direction === 'ASC'
+                ? \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING
+                : \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING
+        ]);
+
+        $applications = $query->execute();
+
+        $toggleDirection = 'ASC';
+
+        if (
+            $this->request->hasArgument('order') &&
+            $this->request->getArgument('order') === $orderField
+        ) {
+            $toggleDirection = $direction === 'DESC' ? 'ASC' : 'DESC';
+        }
+
+
+        // =============================
+        // Assign Template Variables
+        // =============================
+
+        $moduleTemplate->assignMultiple([
+            'applications' => $applications,
+            'currentOrder' => $orderField,
+            'currentDirection' => $direction,
+            'toggleDirection' => $toggleDirection
+        ]);
+
+        return $moduleTemplate->renderResponse('Backend/Applications');
+    }
+
+
+
+
+
+    public function showApplicationAction(): ResponseInterface
+    {
+        $moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+        $assetCollector = GeneralUtility::makeInstance(AssetCollector::class);
+        $assetCollector->addStyleSheet(
+            'jobsList',
+            'EXT:jobman/Resources/Public/Css/Backend/Jobs-list.css',
+        );
+        $assetCollector->addStyleSheet(
+            'jobsList',
+            'EXT:jobman/Resources/Public/Css/Backend/Jobs-showApplication.css',
+        );
+
+        $queryParams = $this->request->getQueryParams();
+        if (isset($queryParams['application'])) {
+            $application = (int)$queryParams['application'];
+        } else {
+            $application = "";
+        }
+
+        $showApplication = $this->applicationRepository->findByUid($application);
+
+        $moduleTemplate->assign('application', $showApplication);
+
+        return $moduleTemplate->renderResponse('Backend/ShowApplications');
     }
 
 
@@ -208,12 +316,12 @@ final class JobsController extends ActionController
     }
 
 
-    public function generateAllJobsLink(): string
+    public function generateAllJobsLink($pid): string
     {
         $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
 
         return $uriBuilder->buildUriFromRoute('jobman_jobs', [
-            'id' => 3,
+            'id' => $pid,
             'tx_jobman_jobman_jobs' => [
                 'action' => 'allJobs'
             ]

@@ -10,21 +10,26 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 
 final class JobViewCounterMiddleware implements MiddlewareInterface
 {
+    private const TABLE_VIEWS = 'tx_jobman_job_views';
+    private const TABLE_JOB = 'tx_jobman_domain_model_job';
+
     /**
-     * Zeitraum in Sekunden, z.B. 24h = 86400
+     * Tracking Window (24 Stunden)
      */
     private const TIME_WINDOW = 86400;
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $pluginParams = $request->getQueryParams()['tx_jobman_pi1'] ?? [];
+
         $jobUid = (int)($pluginParams['job'] ?? 0);
 
         if ($jobUid > 0) {
-            $ip = $this->getClientIp($request);
+            $ip = GeneralUtility::getIndpEnv('REMOTE_ADDR');
             $this->incrementViewCounter($jobUid, $ip);
         }
 
@@ -34,50 +39,35 @@ final class JobViewCounterMiddleware implements MiddlewareInterface
     private function incrementViewCounter(int $jobUid, string $ip): void
     {
         $connectionPool = GeneralUtility::makeInstance(ConnectionPool::class);
-        $viewsConnection = $connectionPool->getConnectionForTable('tx_jobman_job_views');
-        $jobsConnection = $connectionPool->getConnectionForTable('tx_jobman_domain_model_job');
 
+        $viewsConnection = $connectionPool->getConnectionForTable(self::TABLE_VIEWS);
+        $jobsConnection = $connectionPool->getConnectionForTable(self::TABLE_JOB);
+
+        $bucket = (int)floor(time() / self::TIME_WINDOW);
+        $ipHash = hash('sha256', $ip);
         $now = time();
-        $currentDay = (int)floor($now / self::TIME_WINDOW); // Tagesfenster für UNIQUE-Key
 
-        // Transaktion starten (atomic)
-        $viewsConnection->beginTransaction();
         try {
-            // Prüfen, ob schon ein View für diese IP im aktuellen Tagesfenster existiert
-            $existing = $viewsConnection->fetchOne(
-                'SELECT uid FROM tx_jobman_job_views WHERE job = ? AND ip = ? AND day = ? FOR UPDATE',
-                [$jobUid, $ip, $currentDay]
+
+            // Unique Constraint übernimmt Duplicate Schutz
+            $viewsConnection->insert(self::TABLE_VIEWS, [
+                'job' => $jobUid,
+                'ip_hash' => $ipHash,
+                'bucket' => $bucket,
+                'tstamp' => $now,
+            ]);
+
+            
+            $jobsConnection->executeStatement(
+                'UPDATE ' . self::TABLE_JOB .
+                ' SET views = views + 1
+                WHERE uid = ?
+                AND deleted = 0',
+                [$jobUid]
             );
 
-            if ($existing === false) {
-                // Neuer Eintrag in Job-Views
-                $viewsConnection->insert(
-                    'tx_jobman_job_views',
-                    [
-                        'job' => $jobUid,
-                        'ip' => $ip,
-                        'tstamp' => $now,
-                        'day' => $currentDay
-                    ]
-                );
-
-                // Gesamtviews hochzählen
-                $jobsConnection->executeStatement(
-                    'UPDATE tx_jobman_domain_model_job SET views = views + 1 WHERE uid = ? AND deleted = 0',
-                    [$jobUid]
-                );
-            }
-
-            $viewsConnection->commit();
-        } catch (\Throwable $e) {
-            $viewsConnection->rollBack();
-            // Optional: Logger, damit man sieht, wenn etwas schiefgeht
+        } catch (UniqueConstraintViolationException $e) {
+            
         }
-    }
-
-    private function getClientIp(ServerRequestInterface $request): string
-    {
-        $serverParams = $request->getServerParams();
-        return $serverParams['REMOTE_ADDR'] ?? '0.0.0.0';
     }
 }

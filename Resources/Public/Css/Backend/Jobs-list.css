@@ -88,6 +88,20 @@
     content: "📋 ";
 }
 
+.navigation .link.applications a::before {
+    content: "📨 ";
+}
+
+
+.navigation .link a::before {
+    display: inline-block;
+    width: 20px;
+    text-align: center;
+    margin-right: 8px;
+}
+
+
+
 /* Responsive: Stapeln bei kleinen Screens */
 @media (max-width: 600px) {
     .header {
@@ -230,3 +244,135 @@
         margin-top: 0.5rem;
     }
 }
+
+
+
+
+
+/* ===== Modal Container ===== */
+.custom-modal {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.25s ease;
+}
+
+.custom-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ===== Overlay ===== */
+.custom-modal__overlay {
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(6px);
+    background: rgba(15, 23, 42, 0.55); /* modern dark blue tint */
+    transition: opacity 0.25s ease;
+}
+
+/* ===== Modal Box ===== */
+.custom-modal__box {
+    position: relative;
+    width: 100%;
+    max-width: 460px;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.15),
+        0 8px 16px rgba(0, 0, 0, 0.08);
+
+    transform: translateY(20px) scale(0.97);
+    opacity: 0;
+    transition: all 0.25s ease;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.custom-modal.active .custom-modal__box {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+/* ===== Title ===== */
+.custom-modal__box h3 {
+    margin: 0 0 12px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+/* ===== Text ===== */
+.custom-modal__box p {
+    margin: 0 0 24px;
+    line-height: 1.6;
+    color: #475569;
+    font-size: 0.95rem;
+}
+
+/* ===== Actions ===== */
+.custom-modal__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+/* ===== Buttons ===== */
+.custom-modal__actions button,
+.custom-modal__actions a {
+    appearance: none;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+/* Cancel Button */
+.js-cancel {
+    background: #f1f5f9;
+    color: #334155;
+}
+
+.js-cancel:hover {
+    background: #e2e8f0;
+}
+
+/* Confirm Button */
+.js-confirm-delete {
+    background: #ef4444;
+    color: white;
+}
+
+.js-confirm-delete:hover {
+    background: #dc2626;
+    box-shadow: 0 4px 14px rgba(239, 68, 68, 0.35);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 500px) {
+    .custom-modal__box {
+        margin: 16px;
+        padding: 24px;
+    }
+
+    .custom-modal__actions {
+        flex-direction: column;
+    }
+
+    .custom-modal__actions button,
+    .custom-modal__actions a {
+        width: 100%;
+        text-align: center;
+    }
+}
+

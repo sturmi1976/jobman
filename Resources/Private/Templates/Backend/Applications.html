@@ -1,0 +1,103 @@
+<div class="wrapper_joblist">
+    <div class="backlink">
+        <f:link.action action="index">
+            <f:translate key="LLL:EXT:jobman/Resources/Private/Language/locallang_db.xlf:back_text" />
+        </f:link.action>
+    </div>
+
+
+
+    <div class="sort-bar">
+
+    <span>Sortieren:</span>
+
+    <f:link.action
+        action="applications"
+        arguments="{order:'crdate', direction: toggleDirection}"
+        class="sort-link {f:if(condition: currentOrder == 'crdate', then: 'active')}">
+
+        Datum
+    </f:link.action>
+
+    <f:link.action
+        action="applications"
+        arguments="{order:'status', direction: toggleDirection}"
+        class="sort-link {f:if(condition: currentOrder == 'status', then: 'active')}">
+
+        Status
+    </f:link.action>
+
+    <f:link.action
+        action="applications"
+        arguments="{order:'name', direction: toggleDirection}"
+        class="sort-link {f:if(condition: currentOrder == 'name', then: 'active')}">
+
+        Name
+    </f:link.action>
+
+
+</div>
+
+
+
+
+
+    <f:if condition="{applications}">
+        <f:then>
+            
+            <div class="applications">
+
+    <f:for each="{applications}" as="application">
+
+        <f:link.action action="showApplication"
+                       arguments="{application: application}"
+                       class="application-card-link">
+
+            <div class="application-card">
+
+                <div class="application-card__left">
+                    <div class="application-card__name">
+                        {application.name}
+                    </div>
+
+                    <div class="application-card__job">
+                        {application.job.title}
+                    </div>
+                </div>
+
+                <div class="application-card__right">
+
+                    <div class="application-card__status status-{application.status}">
+                        <f:switch expression="{application.status}">
+                            <f:case value="0">Neu</f:case>
+                            <f:case value="1">In Prüfung</f:case>
+                            <f:case value="2">Interview</f:case>
+                            <f:case value="3">Angenommen</f:case>
+                            <f:case value="4">Abgelehnt</f:case>
+                        </f:switch>
+                    </div>
+
+                    <div class="application-card__date">
+                        <f:format.date format="d.m.Y">
+                            {application.crdate}
+                        </f:format.date>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </f:link.action>
+
+    </f:for>
+
+</div>
+
+
+
+        </f:then>
+        <f:else>
+
+        </f:else>
+    </f:if>
+</div>

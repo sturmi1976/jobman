@@ -31,13 +31,28 @@ CREATE TABLE tx_jobman_domain_model_job (
 );
 
 CREATE TABLE tx_jobman_job_views (
-    uid INT(11) NOT NULL AUTO_INCREMENT,
-    job INT(11) NOT NULL,
-    ip VARCHAR(45) NOT NULL,
-    tstamp INT(11) NOT NULL,
-    PRIMARY KEY(uid),
-    UNIQUE KEY unique_view (job, ip)
+    uid int(11) NOT NULL AUTO_INCREMENT,
+
+    job int(11) NOT NULL,
+
+    -- DSGVO freundlich: IP wird gehashed gespeichert
+    ip_hash varchar(64) NOT NULL,
+
+    -- Zeitfenster Bucket (z.B. 24h Fenster)
+    bucket int(11) NOT NULL,
+
+    tstamp int(11) NOT NULL,
+
+    PRIMARY KEY (uid),
+
+    -- Ein View pro Job pro IP pro Zeitfenster
+    UNIQUE KEY unique_view (job, ip_hash, bucket),
+
+    KEY job_index (job),
+    KEY bucket_index (bucket)
 );
+
+
 
 CREATE TABLE tx_jobman_domain_model_application (
     uid INT(11) NOT NULL auto_increment,

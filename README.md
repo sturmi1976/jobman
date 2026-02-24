@@ -41,3 +41,5 @@ Go to the Site Settings and, in the section “Sets for this Site”, add the Si
 Go to the Site Settings and navigate to the Jobmanager (Jobman) section. Enter the UID of the folder where the job postings will be stored and click Save.
 
 You can also change the template paths here, for example if you want to override the templates in your site package.
+
+Create a page in the page tree where the jobs will be displayed and add the Jobmanager plugin to this page. Then configure the Flexform settings in the plugin to specify the folders where job postings and applications should be stored. ALL RIGHTS!

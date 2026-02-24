@@ -73,16 +73,17 @@ return [
 
         'remote' => [
             'label' => 'LLL:EXT:jobman/Resources/Private/Language/locallang_db.xlf:tx_jobman_domain_model_job.remote',
+            'onChange' => 'reload',
             'config' => [
                 'type' => 'check',
                 'default' => 0,
-                'onChange' => 'reload',
             ],
         ],
 
         'remote_type' => [
             'label' => 'LLL:EXT:jobman/Resources/Private/Language/locallang_db.xlf:tx_jobman_domain_model_job.remote_type',
             'displayCond' => 'FIELD:remote:REQ:true',
+            'onChange' => 'reload',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
@@ -91,8 +92,20 @@ return [
                     ['LLL:EXT:jobman/Resources/Private/Language/locallang_db.xlf:tx_jobman_domain_model_job.remote_type.full_remote', 'FULL_REMOTE'],
                     ['LLL:EXT:jobman/Resources/Private/Language/locallang_db.xlf:tx_jobman_domain_model_job.remote_type.remote_eu', 'REMOTE_EU'],
                     ['LLL:EXT:jobman/Resources/Private/Language/locallang_db.xlf:tx_jobman_domain_model_job.remote_type.remote_world', 'REMOTE_WORLD'],
+                    ['Eigene Beschreibung', 'CUSTOM'],
                 ],
                 'default' => '',
+            ],
+        ],
+
+
+        'remote_custom_text' => [
+            'label' => 'Eigene Remote-Beschreibung',
+            'displayCond' => 'FIELD:remote_type:=:CUSTOM',
+            'config' => [
+                'type' => 'input',
+                'size' => 40,
+                'eval' => 'trim',
             ],
         ],
 
@@ -100,16 +113,17 @@ return [
 
         'show_button' => [
             'label' => 'Bewerbungs-Button anzeigen',
+            'onChange' => 'reload',
             'config' => [
                 'type' => 'check',
                 'default' => 0,
-                'onChange' => 'reload',
             ],
         ],
 
         'button_type' => [
             'label' => 'Button Typ',
             'displayCond' => 'FIELD:show_button:REQ:true',
+            'onChange' => 'reload',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
@@ -118,7 +132,6 @@ return [
                     ['Externer Link', 'link'],
                 ],
                 'default' => '',
-                'onChange' => 'reload',
             ],
         ],
 
@@ -126,6 +139,7 @@ return [
             'label' => 'Externer Link zum Bewerbungsformular',
             'description' => 'Hier kannst du einen externen Link zu einem Bewerbungsformular oder einem Stellenagebot angeben.',
             'displayCond' => 'FIELD:button_type:=:link',
+            'onChange' => 'reload',
             'config' => [
                 'type' => 'input',
                 'eval' => 'trim',
@@ -138,9 +152,10 @@ return [
             'displayCond' => 'FIELD:button_type:=:form',
             'config' => [
                 'type' => 'input',
-                'eval' => 'trim',
+                'eval' => 'trim,required',
             ],
         ],
+
 
 
         'address_mode' => [
@@ -270,7 +285,7 @@ return [
         '0' => [
             'showitem' => '
 --div--;core.form.tabs:general,
-title, slug, location, employment_type, remote, remote_type, show_button, button_type, extern_link, email, settings,
+title, slug, location, employment_type, remote, remote_type, remote_custom_text, show_button, button_type, extern_link, email, settings,
 --div--;Details,
 description, salary,
 --div--;Kontakt,

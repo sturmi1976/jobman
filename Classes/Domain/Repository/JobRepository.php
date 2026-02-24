@@ -12,26 +12,26 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class JobRepository extends Repository
 {
     public function getViewCountForJob(\Lanius\Jobman\Domain\Model\Job $job): int
-{
-    $connection = GeneralUtility::makeInstance(ConnectionPool::class)
-        ->getConnectionForTable('tx_jobman_job_views');
+    {
+        $connection = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getConnectionForTable('tx_jobman_job_views');
 
-    $queryBuilder = $connection->createQueryBuilder();
+        $queryBuilder = $connection->createQueryBuilder();
 
-    $count = $queryBuilder
-        ->count('uid')
-        ->from('tx_jobman_job_views')
-        ->where(
-            $queryBuilder->expr()->eq(
-                'job',
-                $queryBuilder->createNamedParameter($job->getUid())
+        $count = $queryBuilder
+            ->count('uid')
+            ->from('tx_jobman_job_views')
+            ->where(
+                $queryBuilder->expr()->eq(
+                    'job',
+                    $queryBuilder->createNamedParameter($job->getUid())
+                )
             )
-        )
-        ->executeQuery()
-        ->fetchOne();
+            ->executeQuery()
+            ->fetchOne();
 
-    return (int)$count;
-}
+        return (int)$count;
+    }
 
 
 

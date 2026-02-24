@@ -2,6 +2,33 @@
 
 <div class="application-detail">
 
+
+    <div class="status-select" style="text-align: right;">
+    <f:form action="updateStatus" method="post">
+
+    <f:form.hidden name="application" value="{application.uid}" />
+
+    <label>Status ändern</label>
+
+    <f:form.select name="status" value="{application.status}">
+        <f:form.select.option value="0">Neu</f:form.select.option>
+        <f:form.select.option value="1">In Prüfung</f:form.select.option>
+        <f:form.select.option value="2">Interview</f:form.select.option>
+        <f:form.select.option value="3">Angenommen</f:form.select.option>
+        <f:form.select.option value="4">Abgelehnt</f:form.select.option>
+    </f:form.select>
+    <br />
+    <button type="submit" class="btn-save">
+        Status speichern
+    </button>
+
+</f:form>
+
+</div>
+
+
+<hr />
+
     <div class="application-header">
         <div class="header-left">
             <h1>Bewerbung von {application.name}</h1>
@@ -30,6 +57,7 @@
 </f:switch>
 
         </div>
+
     </div>
 
     <div class="application-body">

@@ -169,6 +169,11 @@ final class JobsController extends ActionController
 
         $applications = $query->execute();
 
+        //$applications = $query->execute()->toArray();
+
+
+        //\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($applications);
+
         $toggleDirection = 'ASC';
 
         if (
@@ -252,6 +257,22 @@ final class JobsController extends ActionController
             return false;
         }
     }
+
+
+
+
+    public function updateStatusAction(int $application, int $status): ResponseInterface
+    {
+        $this->applicationRepository->updateStatus($application, $status);
+
+        return $this->redirect(
+            'showApplication',
+            null,
+            null,
+            ['application' => $application]
+        );
+    }
+
 
 
 

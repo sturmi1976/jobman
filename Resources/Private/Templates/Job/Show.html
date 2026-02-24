@@ -81,13 +81,31 @@
                 <li>
                     🌍
                     <f:if condition="{job.remoteType}">
-                        <span>{job.remoteType}</span>
+                        <f:then>
+                            <f:if condition="{job.remoteType} == 'FULL_REMOTE'">
+                                <span>100% Home Office</span>
+                            </f:if>
+                            <f:if condition="{job.remoteType} == 'HYBRID'">
+                                <span>Hybrides arbeiten</span>
+                            </f:if>
+                            <f:if condition="{job.remoteType} == 'REMOTE_EU'">
+                                <span>Remote innerhalb der EU</span>
+                            </f:if>
+                            <f:if condition="{job.remoteType} == 'REMOTE_WORLD'">
+                                <span>Remote weltweit</span>
+                            </f:if>
+                            <f:if condition="{job.remoteType} == 'CUSTOM'">
+                                <span>{job.remoteCustomText}</span>
+                            </f:if>
+                            
+                        </f:then>
+                        <f:else>
+                            <span>Remote</span>
+                        </f:else>
                     </f:if>
-                    <f:else>
-                        <span>Remote</span>
-                    </f:else>
                 </li>
             </f:if>
+            
 
             <f:if condition="{job.salary}">
                 <li>

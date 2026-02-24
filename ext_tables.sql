@@ -10,6 +10,7 @@ CREATE TABLE tx_jobman_domain_model_job (
     salary VARCHAR(255) DEFAULT '' NOT NULL,
     remote TINYINT(1) DEFAULT 0 NOT NULL,
     remote_type VARCHAR(30) DEFAULT '' NOT NULL,
+    remote_custom_text varchar(255) DEFAULT '' NOT NULL,
     valid_through INT(11) DEFAULT 0 NOT NULL,
     views INT(11) DEFAULT '0' NOT NULL,
 
@@ -64,7 +65,8 @@ CREATE TABLE tx_jobman_domain_model_application (
     message TEXT,
 
     tstamp INT(11) DEFAULT 0 NOT NULL,
-    crdate INT(11) DEFAULT 0 NOT NULL,
+    crdate int(11) DEFAULT 0 NOT NULL,
+    date int(11) DEFAULT 0 NOT NULL,
     deleted TINYINT(1) DEFAULT 0 NOT NULL,
     hidden TINYINT(1) DEFAULT 0 NOT NULL,
 

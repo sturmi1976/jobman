@@ -40,19 +40,36 @@ class Job extends AbstractEntity
     protected string $email = '';
 
     /**
- * @var int
- */
-protected int $viewCount = 0;
+     * @var string
+     */
+    protected string $remoteCustomText = '';
 
-public function getViewCount(): int
-{
-    return $this->viewCount;
-}
+    /**
+     * @var int
+     */
+    protected int $viewCount = 0;
 
-public function setViewCount(int $viewCount): void
-{
-    $this->viewCount = $viewCount;
-}
+
+
+    public function getRemoteCustomText(): string
+    {
+        return $this->remoteCustomText;
+    }
+
+    public function setRemoteCustomText(string $remoteCustomText): void
+    {
+        $this->remoteCustomText = $remoteCustomText;
+    }
+
+    public function getViewCount(): int
+    {
+        return $this->viewCount;
+    }
+
+    public function setViewCount(int $viewCount): void
+    {
+        $this->viewCount = $viewCount;
+    }
 
 
     public function getEmail(): string

@@ -1,3 +1,6 @@
+<f:debug>{_all}</f:debug>
+
+
 <div class="wrapper_joblist">
     <div class="backlink">
         <f:link.action action="index">
@@ -93,7 +96,7 @@
 
                     <div class="application-card__date">
                         <f:format.date format="d.m.Y">
-                            {application.date -> f:format.date(format: 'd.m.Y')}
+                            {application.crdate}
                         </f:format.date>
                     </div>
 

@@ -49,6 +49,7 @@ return [
                 'allJobs',
                 'applications',
                 'showApplication',
+                'updateStatus',
             ],
         ],
         'navigationComponent' => '@typo3/backend/tree/page-tree-element',

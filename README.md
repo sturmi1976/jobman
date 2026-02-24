@@ -31,3 +31,7 @@ Install the extension using Composer:
 3. Activate the extension Job Manager
 4. Add the extension to the Site Settings to enable site-specific configuration
 5. Run the database updates via the Upgrade Wizard if required
+
+# Setup & Configuration
+Create a folder where the job postings will be stored.
+Applications must also be stored in a folder — either in the same folder or in a separate folder that you create specifically for the applications.

@@ -122,6 +122,7 @@ class JobController extends ActionController
 
     public function showAction(\Lanius\Jobman\Domain\Model\Job $job): ResponseInterface
     {
+
         $assetCollector = GeneralUtility::makeInstance(AssetCollector::class);
 
         $assetCollector->addStyleSheet(
@@ -274,6 +275,7 @@ class JobController extends ActionController
         $application->setName($name);
         $application->setEmail($mail);
         $application->setMessage($message);
+        $application->setDate(new \DateTime());
 
         $uploadedFalFiles = $this->uploadApplicationFiles($name);
 
@@ -332,7 +334,6 @@ class JobController extends ActionController
             \TYPO3\CMS\Core\Type\ContextualFeedbackSeverity::OK
         );
 
-        //return $this->redirect('show', 'Job', null, ['job' => $job]);
         return $this->redirect('success', 'Job', null, ['job' => $job]);
     }
 

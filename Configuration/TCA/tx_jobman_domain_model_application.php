@@ -17,7 +17,7 @@ return [
         '1' => [
             'showitem' => '
                 hidden,
-                job, name, email, message,
+                job, name, email, message, date,
                 --div--;Status, status,
                 --div--;Files, files
             '
@@ -90,6 +90,13 @@ return [
                 ],
                 'maxitems' => 10,
                 'allowed' => 'pdf,doc,docx,jpg,jpeg,png,zip',
+            ],
+        ],
+
+        'date' => [
+            'label' => 'Datum der Bewerbung',
+            'config' => [
+                'type' => 'input',
             ],
         ],
     ],

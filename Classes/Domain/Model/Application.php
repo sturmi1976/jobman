@@ -18,6 +18,41 @@ class Application extends AbstractEntity
 
     protected string $status = 'new';
 
+    protected ?\DateTime $crdate = null;
+    protected ?\DateTime $tstamp = null;
+    protected ?\DateTime $date = null;
+
+
+
+    public function getDate(): ?\DateTime
+    {
+        return $this->date;
+    }
+
+    public function setDate(?\DateTime $date): void
+    {
+        $this->date = $date;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTstamp(): ?\DateTime
+    {
+        return $this->tstamp;
+    }
+
+
+    public function getCrdate(): ?\DateTime
+    {
+        return $this->crdate;
+    }
+
+
+
+
+
+
     public function getStatus(): string
     {
         return $this->status;

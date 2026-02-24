@@ -40,7 +40,11 @@ Applications must also be stored in a folder — either in the same folder or in
 
 Go to the Site Settings and, in the section “Sets for this Site”, add the Site Set (Jobmanager).
 
+![Screenshot](docs/images/site-sets.png)
+
 Go to the Site Settings and navigate to the Jobmanager (Jobman) section. Enter the UID of the folder where the job postings will be stored and click Save.
+
+![Screenshot](docs/images/site-sets.png)
 
 You can also change the template paths here, for example if you want to override the templates in your site package.
 

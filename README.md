@@ -35,3 +35,9 @@ Install the extension using Composer:
 # Setup & Configuration
 Create a folder where the job postings will be stored.
 Applications must also be stored in a folder — either in the same folder or in a separate folder that you create specifically for the applications. 
+
+Go to the Site Settings and, in the section “Sets for this Site”, add the Site Set (Jobmanager).
+
+Go to the Site Settings and navigate to the Jobmanager (Jobman) section. Enter the UID of the folder where the job postings will be stored and click Save.
+
+You can also change the template paths here, for example if you want to override the templates in your site package.

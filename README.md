@@ -51,3 +51,8 @@ You can also change the template paths here, for example if you want to override
 Create a page in the page tree where the jobs will be displayed and add the Jobmanager plugin to this page. Then configure the Flexform settings in the plugin to specify the folders where job postings and applications should be stored. ALL RIGHTS!
 
 ![Screenshot](docs/images/flexform1.png)
+
+# Backend Modules
+
+## Dashboard
+![Screenshot](docs/images/dashboard.png)

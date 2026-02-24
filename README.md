@@ -34,4 +34,4 @@ Install the extension using Composer:
 
 # Setup & Configuration
 Create a folder where the job postings will be stored.
-Applications must also be stored in a folder — either in the same folder or in a separate folder that you create specifically for the applications.
+Applications must also be stored in a folder — either in the same folder or in a separate folder that you create specifically for the applications. 

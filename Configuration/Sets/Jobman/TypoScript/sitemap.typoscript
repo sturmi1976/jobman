@@ -1,0 +1,30 @@
+
+plugin.tx_seo {
+  config {
+    xmlSitemap {
+      sitemaps {
+        jobman {
+          provider = TYPO3\CMS\Seo\XmlSitemap\RecordsXmlSitemapDataProvider
+          config {
+            table = tx_jobman_domain_model_job
+            sortField = sorting
+            lastModifiedField = tstamp
+            #changeFreqField = news_changefreq
+            #additionalWhere = AND ({#no_index} = 0 OR {#no_follow} = 0)
+            pid = {$jobman.pid}
+            url {
+              pageId = {$jobman.uid}
+              fieldToParameterMap {
+                uid = tx_jobman_pi1[job]
+              }
+              additionalGetParameters {
+                tx_jobman_pi1.controller = Job
+                tx_jobman_pi1.action = show  
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

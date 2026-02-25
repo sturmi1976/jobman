@@ -1,3 +1,8 @@
+@import 'EXT:jobman/Configuration/Sets/Jobman/TypoScript/sitemap.typoscript'
+@import 'EXT:jobman/Configuration/Sets/Jobman/TypoScript/breadcrumb.typoscript'
+
+
+
 plugin.tx_jobman {
     view {
         templateRootPaths.0 = EXT:jobman/Resources/Private/Templates/

@@ -1,0 +1,15 @@
+#################
+#### EXAMPLE ####
+#################
+/*
+page = PAGE
+page { 
+
+    10 {
+        dataProcessing {
+            455 = Lanius\Jobman\DataProcessing\AddRecordToMenuProcessor
+            455.addToMenus = breadcrumb
+        }
+    }
+}
+*/

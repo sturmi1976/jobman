@@ -39,3 +39,10 @@ settings:
     description: 'The uid of storage folder'
     type: string
     default: '0'
+
+  jobman.uid:
+    label: 'Uid of Job Page'
+    category: Jobman.uids
+    description: 'The uid of Job Page (Frontend Plugin)'
+    type: string
+    default: '0'

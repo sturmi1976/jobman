@@ -62,6 +62,24 @@ imports:
     resource: 'EXT:jobman/Configuration/Routes/Jobman.yaml'
 ```
 
+# Extend breadcrumb with job record
+
+If you want to extend the breadcrumb with job records, you need to add the following TypoScript configuration to your site setup.
+The value for `addToMenus` must match the name of the breadcrumb menu used in your TYPO3 setup (in this example `breadcrumb`).
+
+```typoscript
+page = PAGE
+page { 
+
+    10 {
+        dataProcessing {
+            455 = Lanius\Jobman\DataProcessing\AddRecordToMenuProcessor
+            455.addToMenus = breadcrumb
+        }
+    }
+}
+```
+
 # Backend Modules
 
 ## Dashboard

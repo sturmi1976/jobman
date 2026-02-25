@@ -55,7 +55,9 @@ Create a page in the page tree where the jobs will be displayed and add the Jobm
 # SEO URLs
 
 For SEO-friendly URLs, you need to add the following at the end of the config.yaml file:
-[text](../../config/sites/config/config.yaml)
+`imports:
+  -
+    resource: 'EXT:jobman/Configuration/Routes/Jobman.yaml'`
 
 # Backend Modules
 

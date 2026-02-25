@@ -60,9 +60,10 @@ For SEO-friendly URLs, you need to add the following at the end of the config.ya
 imports:
   -
     resource: 'EXT:jobman/Configuration/Routes/Jobman.yaml'
-```yaml
+```
 
 # Backend Modules
 
 ## Dashboard
 ![Screenshot](docs/images/dashboard.png)
+

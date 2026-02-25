@@ -52,6 +52,11 @@ Create a page in the page tree where the jobs will be displayed and add the Jobm
 
 ![Screenshot](docs/images/flexform1.png)
 
+# SEO URLs
+
+For SEO-friendly URLs, you need to add the following at the end of the config.yaml file:
+[text](../../config/sites/config/config.yaml)
+
 # Backend Modules
 
 ## Dashboard

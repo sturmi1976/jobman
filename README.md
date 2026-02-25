@@ -70,9 +70,10 @@ The value for `addToMenus` must match the name of the breadcrumb menu used in yo
 ```typoscript
 page = PAGE
 page { 
-
+    [...]
     10 {
         dataProcessing {
+            [...]
             455 = Lanius\Jobman\DataProcessing\AddRecordToMenuProcessor
             455.addToMenus = breadcrumb
         }

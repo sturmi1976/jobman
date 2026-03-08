@@ -76,4 +76,34 @@ class JobRepository extends Repository
         // Ausführen und Ergebnisse zurückgeben
         return $query->execute();
     }
+
+
+
+    public function getCrdate(int $uid): int
+    {
+        $connection = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getConnectionForTable('tx_jobman_domain_model_job');
+
+        $row = $connection->select(
+            ['crdate'],
+            'tx_jobman_domain_model_job',
+            ['uid' => $uid]
+        )->fetchAssociative();
+
+        return (int)($row['crdate'] ?? 0);
+    }
+
+    public function getTstamp(int $uid): int
+    {
+        $connection = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getConnectionForTable('tx_jobman_domain_model_job');
+
+        $row = $connection->select(
+            ['tstamp'],
+            'tx_jobman_domain_model_job',
+            ['uid' => $uid]
+        )->fetchAssociative();
+
+        return (int)($row['tstamp'] ?? 0);
+    }
 }

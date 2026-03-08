@@ -183,28 +183,6 @@
 
     </section>
 
-    <!-- Footer -->
-    <footer class="jobman-job-detail__footer">
-        <f:if condition="{job.crdate}">
-            <div class="jobman-job-detail__date">
-                🕒
-                <f:translate
-                    key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.postedOn"
-                    languageKey="{job:languageKey()}" />
-                <time datetime="{f:format.date(date: job.tstamp, format: 'Y-m-d')}">
-                    <f:format.date format="d.m.Y">{job.tstamp}</f:format.date>
-                </time>
-            </div>
-        </f:if>
-
-        <f:if condition="{job.views}">
-            <div class="jobman-job-detail__views">
-                👁 {job.views}
-                <f:translate
-                    key="LLL:EXT:jobman/Resources/Private/Language/locallang.xlf:job.views"
-                    languageKey="{job:languageKey()}" />
-            </div>
-        </f:if>
-    </footer>
+    
 
 </div>

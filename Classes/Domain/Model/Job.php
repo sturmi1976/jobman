@@ -15,8 +15,14 @@ class Job extends AbstractEntity
     protected string $employmentType = '';
     protected string $salary = '';
     protected bool $remote = false;
-    //protected ?\DateTime $validThrough = null;
+    /**
+     * @var int
+     */
     protected int $crdate = 0;
+
+    /**
+     * @var int
+     */
     protected int $tstamp = 0;
     protected int $validThrough = 0;
 
@@ -226,36 +232,24 @@ class Job extends AbstractEntity
     }
 
 
-    /**
-     * @return int
-     */
-    public function getTstamp(): int
-    {
-        return $this->tstamp;
-    }
-
-    /**
-     * @param int $tstamp
-     */
-    public function setTstamp(int $tstamp): void
-    {
-        $this->tstamp = $tstamp;
-    }
-
-    /**
-     * @return int
-     */
     public function getCrdate(): int
     {
         return $this->crdate;
     }
 
-    /**
-     * @param int $crdate
-     */
     public function setCrdate(int $crdate): void
     {
         $this->crdate = $crdate;
+    }
+
+    public function getTstamp(): int
+    {
+        return $this->tstamp;
+    }
+
+    public function setTstamp(int $tstamp): void
+    {
+        $this->tstamp = $tstamp;
     }
 
     public function getTitle(): string

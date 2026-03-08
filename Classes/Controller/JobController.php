@@ -133,6 +133,11 @@ class JobController extends ActionController
         // Title Tag for detail pages
         $this->titleProvider->setTitle(htmlspecialchars($job->getTitle()));
 
+        $crdate = $this->jobRepository->getCrdate($job->getUid());
+        $tstamp = $this->jobRepository->getTstamp($job->getUid());
+
+        $job->setTstamp($tstamp);
+        $job->setCrdate($crdate);
 
         // --- JSON-LD for Google Jobs ---
         $structuredData = [
@@ -140,7 +145,7 @@ class JobController extends ActionController
             "@type" => "JobPosting",
             "title" => $job->getTitle(),
             "description" => strip_tags($job->getDescription()),
-            "datePosted" => date('c', $job->getTstamp()),
+            "datePosted" => date('c', $job->getCrdate()),
             "validThrough" => $job->getValidThrough() ? date('c', $job->getValidThrough()) : null,
             "employmentType" => $job->getEmploymentType(),
             "hiringOrganization" => [

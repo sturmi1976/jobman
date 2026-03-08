@@ -18,6 +18,7 @@ plugin.tx_jobman {
 }
 
 
+
 config {
   pageTitleProviders {
     jobman {

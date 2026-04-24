@@ -7,12 +7,12 @@ $EM_CONF[$_EXTKEY] = [
     'author' => 'Andre Lanius',
     'author_email' => 'a-lanius@web.de',
     'state' => 'stable',
-    'version' => '1.8.1',
+    'version' => '1.8.2',
     'constraints' => [
         'depends' => [
             'typo3' => '13.4.0-14.9.99',
             'tt_address' => '0.0.0-0.0.0',
-            'php' => '8.2.0-8.4.99',
+            'php' => '8.2.0-8.5.99',
         ],
     ],
 ];
